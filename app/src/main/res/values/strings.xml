@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Hero Sorveteria</string>
+    <string name="title_activity_menu_lateral">MenuLateral</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_Caixa">Caixa</string>
+    <string name="menu_CalculadoraTroco">Calculadora de troco</string>
+    <string name="menu_HistoricoVendas">Histórico Vendas</string>
+    <string name="menu_ContasPagar">Contas a pagar</string>
+    <string name="menu_ListadeClientes">Lista de Clientes</string>
+    <string name="menu_CadatroProdutos">Cadastro de Produtos</string>
+    <string name="menu_Configuracao">Configurações</string>
+    <string name="menu_EntrarContato">Entrar em contato</string>
+</resources>
