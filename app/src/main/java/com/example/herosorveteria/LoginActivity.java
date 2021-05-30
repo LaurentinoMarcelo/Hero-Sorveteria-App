@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
 
     EditText UsuarioLogin;
     EditText SenhaLogin;
@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
         inicializarComponentes();
 
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void logar(View v) {
-        Intent i = new Intent(this, MenuLateral.class);
+        Intent i = new Intent(this, MenuActivity.class);
         startActivity(i);
     }
 }

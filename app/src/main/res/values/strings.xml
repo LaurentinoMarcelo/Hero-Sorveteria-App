@@ -8,7 +8,8 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_Caixa">Caixa</string>
+
+
     <string name="menu_CalculadoraTroco">Calculadora de troco</string>
     <string name="menu_HistoricoVendas">Histórico Vendas</string>
     <string name="menu_ContasPagar">Contas a pagar</string>
@@ -16,4 +17,13 @@
     <string name="menu_CadatroProdutos">Cadastro de Produtos</string>
     <string name="menu_Configuracao">Configurações</string>
     <string name="menu_EntrarContato">Entrar em contato</string>
+    <string name="menu_ListaFornecedores">Lista de Fornecedores</string>
+    <string name="menu_ControleEstoque">Controle de estoque</string>
+    <string name="menu_Sair">Sair</string>
+    <string name="menu">Menu</string>
+
+
+    <string name="header_nome">Name</string>
+    <string name="header_cargo">Cargo</string>
+
 </resources>

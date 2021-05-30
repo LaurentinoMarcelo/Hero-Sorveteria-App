@@ -9,11 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HeroSorveteria">
-        <activity
-            android:name=".MenuLateral"
-            android:label="@string/title_activity_menu_lateral"
-            android:theme="@style/Theme.HeroSorveteria.NoActionBar"></activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".MenuActivity"></activity>
+        <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
