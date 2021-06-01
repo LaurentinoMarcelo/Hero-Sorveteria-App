@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:text="@string/header_nome"
         android:textColor="#FFFFFF"
-        android:textSize="24sp" />
+        android:textSize="20dp" />
 
     <TextView
         android:id="@+id/textView3"
@@ -28,5 +28,5 @@
         android:layout_height="wrap_content"
         android:text="@string/header_cargo"
         android:textColor="#FFFFFF"
-        android:textSize="24sp" />
+        android:textSize="20dp" />
 </LinearLayout>

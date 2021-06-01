@@ -4,7 +4,7 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_calculadoraPreco"
+            android:id="@+id/nav_calculadoraTroco"
             android:icon="@drawable/ic_calculadoratroco"
             android:title="@string/menu_CalculadoraTroco" />
         <item
@@ -33,12 +33,15 @@
                     android:title="@string/menu_ListaFornecedores" />
                 <item
                     android:id="@+id/nav_controleEstoque"
+                    android:icon="@drawable/ic_controleestoque"
                     android:title="@string/menu_ControleEstoque" />
                 <item
                     android:id="@+id/nav_entrarContato"
+                    android:icon="@drawable/ic_entrarcontato"
                     android:title="@string/menu_EntrarContato" />
                 <item
                     android:id="@+id/nav_sair"
+                    android:icon="@drawable/ic_sair"
                     android:title="@string/menu_Sair" />
             </menu>
         </item>

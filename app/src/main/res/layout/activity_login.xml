@@ -17,7 +17,7 @@
         android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginBottom="15dp"
-        android:gravity="center|center_horizontal"
+        android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,14 +62,16 @@
             android:layout_height="wrap_content"
             android:background="@drawable/botao_customizado_login"
             android:onClick="logar"
-            android:text="Entrar" />
+            android:text="Entrar"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/criarConta"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:background="#FFFFFF"
+            android:layout_marginTop="10dp"
+            android:background="#00000000"
             android:text="Criar uma nova conta."
             android:textAllCaps="false"
             android:textColor="@color/black"
