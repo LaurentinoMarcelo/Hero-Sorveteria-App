@@ -9,8 +9,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class CalculadoraTroco extends AppCompatActivity {
 
+    private DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
     EditText valorPago;
     EditText valorCompra;
     TextView viewTroco;
@@ -42,6 +46,8 @@ public class CalculadoraTroco extends AppCompatActivity {
         String valorT = Double.toString(valorTroco);
 
         viewTroco.setText("R$ " + valorT);
+
+        reference.child("Venda 1").setValue("Venda realizada no valor de R$" + valorC + " reais");
 
 
 

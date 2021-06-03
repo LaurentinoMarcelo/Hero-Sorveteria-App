@@ -13,10 +13,14 @@ import android.view.MenuItem;
 
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import org.jetbrains.annotations.NotNull;
 
 public class MenuActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    private DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
