@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/planofundologin"
+    android:gravity="center"
+    tools:context=".Activity.CadastroUsuario">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/nomeCadastro"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/campo_texto"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Nome"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/emailCadastro"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/campo_texto"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="E-mial"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/senhaCadastro"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/campo_texto"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Senha"
+            android:inputType="textPassword" />
+
+
+        <Button
+            android:id="@+id/btnCadastro"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:background="@drawable/botao_customizado_login"
+            android:onClick="btnCadastro"
+            android:text="Cadastrar"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

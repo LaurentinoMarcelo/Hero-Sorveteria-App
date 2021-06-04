@@ -1,4 +1,4 @@
-package com.example.herosorveteria;
+package com.example.herosorveteria.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 
+import com.example.herosorveteria.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;

@@ -1,4 +1,4 @@
-package com.example.herosorveteria;
+package com.example.herosorveteria.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,14 +7,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.herosorveteria.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class CalculadoraTroco extends AppCompatActivity {
 
-    private DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
+    private DatabaseReference registroVendas = FirebaseDatabase.getInstance().getReference();
     EditText valorPago;
     EditText valorCompra;
     TextView viewTroco;
@@ -27,6 +27,9 @@ public class CalculadoraTroco extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculadora_troco);
 
+
+
+
         inicializarComponentes();
 
 
@@ -35,7 +38,7 @@ public class CalculadoraTroco extends AppCompatActivity {
     }
 
     public void btnCalcularTroco(View v){
-
+        DatabaseReference vendas = registroVendas.child("vendas");
         String valorP = valorPago.getText().toString();
         double valorPago = Double.parseDouble(valorP);
 
@@ -47,10 +50,10 @@ public class CalculadoraTroco extends AppCompatActivity {
 
         viewTroco.setText("R$ " + valorT);
 
-        reference.child("Venda 1").setValue("Venda realizada no valor de R$" + valorC + " reais");
+        registroVendas.child("Venda 1").setValue("Venda realizada no valor de R$" + valorC + " reais");
+        Vendas venda = new Vendas(valorPago, valorCompra, valorTroco, "Dinheiro");
 
-
-
+        vendas.child("001").setValue(venda);
     }
 
     /*public void btnRegistrarVenda(View v){

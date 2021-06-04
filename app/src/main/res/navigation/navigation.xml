@@ -8,12 +8,12 @@
 
     <activity
         android:id="@+id/loginActivity"
-        android:name="com.example.herosorveteria.LoginActivity"
+        android:name="com.example.herosorveteria.Activity.LoginActivity"
         android:label="activity_login"
         tools:layout="@layout/activity_login" />
     <activity
         android:id="@+id/menuActivity"
-        android:name="com.example.herosorveteria.MenuActivity"
+        android:name="com.example.herosorveteria.Activity.MenuActivity"
         android:label="activity_menu"
         tools:layout="@layout/activity_menu" />
 </navigation>
