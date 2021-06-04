@@ -15,18 +15,17 @@
         app:srcCompat="@drawable/logoherofundotransparente" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/nameHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/header_nome"
         android:textColor="#FFFFFF"
         android:textSize="20dp" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/cargoHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/header_cargo"
         android:textColor="#FFFFFF"
         android:textSize="20dp" />
+
 </LinearLayout>

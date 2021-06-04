@@ -14,6 +14,7 @@ import android.view.MenuItem;
 
 import com.example.herosorveteria.R;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -26,6 +27,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private Toolbar toolbar;
+    private FirebaseAuth autenticacao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,6 +81,16 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_historicoVendas:
                 Intent hv = new Intent(this, HistoricoDeVendas.class);
                 startActivity(hv);
+                break;
+            case R.id.nav_contasPagar:
+                Intent dP = new Intent(this, Despesas.class);
+                startActivity(dP);
+                break;
+
+            case R.id.nav_sair:
+                autenticacao.signOut();
+                Intent lg = new Intent(this, LoginActivity.class);
+                startActivity(lg);
                 break;
 
         }

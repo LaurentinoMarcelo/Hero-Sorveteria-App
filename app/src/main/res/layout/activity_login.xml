@@ -61,7 +61,6 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:background="@drawable/botao_customizado_login"
-            android:onClick="logar"
             android:text="Entrar"
             android:textColor="#FFFFFF"
             android:textStyle="bold" />

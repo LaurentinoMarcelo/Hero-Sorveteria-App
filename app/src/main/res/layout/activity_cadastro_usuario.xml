@@ -18,6 +18,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:text="Cadastre-se gratis!"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
         <EditText
             android:id="@+id/nomeCadastro"
             android:layout_width="300dp"
@@ -49,7 +60,7 @@
             android:ems="10"
             android:gravity="center"
             android:hint="Senha"
-            android:inputType="textPassword" />
+            android:inputType="numberPassword" />
 
 
         <Button

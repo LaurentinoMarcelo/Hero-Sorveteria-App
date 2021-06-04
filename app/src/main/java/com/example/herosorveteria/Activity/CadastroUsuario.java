@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.herosorveteria.R;
 import com.example.herosorveteria.config.ConfiguracaoFireBase;
+import com.example.herosorveteria.helper.Base64Custom;
 import com.example.herosorveteria.model.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -23,6 +24,8 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Base64;
 
 public class CadastroUsuario extends AppCompatActivity {
 
@@ -50,9 +53,12 @@ public class CadastroUsuario extends AppCompatActivity {
                     if(!emailcadastro.isEmpty()){
                         if(!senhaCadastro.isEmpty()){
 
-                            usuario = new Usuario(nomecadastro, emailcadastro, senhaCadastro);
+                            usuario = new Usuario();
+                            usuario.setNome(nomecadastro);
+                            usuario.setEmail(emailcadastro);
+                            usuario.setSenha(senhaCadastro);
                             cadastrarUsuario();
-                            entrarMenu();
+
 
                         }else {
                             Toast.makeText(CadastroUsuario.this,
@@ -93,9 +99,14 @@ public class CadastroUsuario extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
                 if( task.isSuccessful() ){
-                    Toast.makeText(CadastroUsuario.this,
-                            "Sucesso ao cadastrar usuário!",
-                            Toast.LENGTH_SHORT).show();
+
+                    String idUsuario = Base64Custom.codificarBase64( usuario.getEmail());
+                    usuario.setIdUsuario(idUsuario);
+                    usuario.salvar();
+                    entrarMenu();
+
+                    finish();
+
                 }else {
                     String excecao = "";
                     try{
