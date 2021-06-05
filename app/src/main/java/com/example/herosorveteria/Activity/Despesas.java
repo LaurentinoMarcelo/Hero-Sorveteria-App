@@ -19,4 +19,10 @@ public class Despesas extends AppCompatActivity {
 
 
     }
+    public void inicializarComponentes(){
+        campoData = findViewById(R.id.data);
+        campoCategoria = findViewById(R.id.categoria);
+        campoDescricao = findViewById(R.id.descricao);
+        
+    }
 }
