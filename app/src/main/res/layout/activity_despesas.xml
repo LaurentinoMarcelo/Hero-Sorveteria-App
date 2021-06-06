@@ -2,10 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/data"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backgroundtelas"
     tools:context=".Activity.Despesas">
 
     <LinearLayout
@@ -15,6 +13,7 @@
         android:layout_marginTop="1dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
+        android:background="@drawable/backgroundtelas"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,68 +21,76 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/valor"
-            android:layout_width="300dp"
-            android:layout_height="80dp"
-            android:layout_marginBottom="15dp"
-            android:background="@drawable/campo_texto"
-            android:gravity="center"
-            android:hint="R$00,00"
-            android:textSize="48sp"
-            android:textStyle="bold" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_marginBottom="15dp"
-            android:background="@drawable/campo_texto"
-            android:gravity="center">
-
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/data"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Ex: 04/06/2021" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_marginBottom="15dp"
-            android:background="@drawable/campo_texto"
-            android:gravity="center">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/categoria"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Ex: conta de luz" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="300dp"
-            android:layout_height="50dp"
+            android:layout_height="70dp"
             android:layout_marginBottom="15dp"
             android:background="@drawable/campo_texto">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/descricao"
+                android:id="@+id/editValor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Ex: salário mensal" />
+                android:gravity="center"
+                android:hint="R$ 00,00"
+                android:inputType="numberDecimal"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                android:textSize="34sp"
+                android:textStyle="bold" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Button
-            android:id="@+id/button"
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/botao_customizado_login"
-            android:text="Salvar"
-            android:textColor="#FFFFFF"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:layout_height="70dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/campo_texto">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editData"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ex: 06/06/2021"
+                android:textColorHint="#000000" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="300dp"
+            android:layout_height="70dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/campo_texto">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editCategoria"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Categoria"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="300dp"
+            android:layout_height="70dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/campo_texto">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editDescricao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Descrição"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabSalvar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:onClick="salvarDespesas"
+            app:srcCompat="@android:drawable/ic_input_add" />
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

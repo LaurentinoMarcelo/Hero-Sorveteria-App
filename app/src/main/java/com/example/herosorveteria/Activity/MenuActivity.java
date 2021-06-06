@@ -86,7 +86,6 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
                 Intent dP = new Intent(this, Despesas.class);
                 startActivity(dP);
                 break;
-
             case R.id.nav_sair:
                 autenticacao.signOut();
                 Intent lg = new Intent(this, LoginActivity.class);
@@ -97,4 +96,6 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }

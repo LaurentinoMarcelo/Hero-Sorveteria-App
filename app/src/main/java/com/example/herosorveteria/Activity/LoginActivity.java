@@ -124,6 +124,7 @@ public class LoginActivity extends AppCompatActivity {
         Intent i = new Intent(this, MenuActivity.class);
         startActivity(i);
         finish();
+
     }
 
     public void btnCadastrar(View v){
@@ -131,4 +132,7 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(i);
         finish();
     }
+
+
+
 }
