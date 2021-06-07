@@ -23,13 +23,23 @@ public class IniciarEverificar extends AppCompatActivity {
 
     public void verificarUsuarioLogado(){
         autenticacao = ConfiguracaoFireBase.getFireBaseAutenticacao();
-        if( autenticacao.getCurrentUser() != null ){
-            abrirTelaPrincipal();
+        if( autenticacao.getCurrentUser() == null ){
+            abrirTelaLogin();
+        }else {
+            abrirTelaLogin();
         }
     }
 
     public void abrirTelaPrincipal(){
         Intent i = new Intent(this, MenuActivity.class);
         startActivity(i);
+        finish();
     }
+    public void abrirTelaLogin(){
+        Intent i = new Intent(this, LoginActivity.class);
+        startActivity(i);
+        finish();
+    }
+
+
 }

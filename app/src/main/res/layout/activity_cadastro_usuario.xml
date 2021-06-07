@@ -48,7 +48,7 @@
             android:background="@drawable/campo_texto"
             android:ems="10"
             android:gravity="center"
-            android:hint="E-mial"
+            android:hint="E-mail"
             android:inputType="textEmailAddress" />
 
         <EditText

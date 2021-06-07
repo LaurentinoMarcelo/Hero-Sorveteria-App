@@ -13,7 +13,6 @@
         android:layout_marginTop="1dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
-        android:background="@drawable/backgroundtelas"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -32,11 +31,12 @@
                 android:id="@+id/editValor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/cardview_shadow_end_color"
                 android:gravity="center"
                 android:hint="R$ 00,00"
                 android:inputType="numberDecimal"
                 android:textColor="#000000"
-                android:textColorHint="#000000"
+                android:textColorHint="@color/mr_cast_meta_black_scrim"
                 android:textSize="34sp"
                 android:textStyle="bold" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -51,8 +51,10 @@
                 android:id="@+id/editData"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/cardview_shadow_end_color"
                 android:hint="Ex: 06/06/2021"
-                android:textColorHint="#000000" />
+                android:textColorHint="#000000"
+                android:textSize="24sp" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -66,6 +68,7 @@
                 android:id="@+id/editCategoria"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/cardview_shadow_end_color"
                 android:hint="Categoria"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -80,6 +83,7 @@
                 android:id="@+id/editDescricao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/cardview_shadow_end_color"
                 android:hint="Descrição"
                 android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
