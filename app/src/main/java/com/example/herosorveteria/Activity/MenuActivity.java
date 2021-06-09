@@ -17,8 +17,10 @@ import android.widget.TextView;
 
 
 import com.example.herosorveteria.R;
+import com.example.herosorveteria.adapter.AdapterMovimentacao;
 import com.example.herosorveteria.config.ConfiguracaoFireBase;
 import com.example.herosorveteria.helper.Base64Custom;
+import com.example.herosorveteria.model.Movimentacao;
 import com.example.herosorveteria.model.Usuario;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,6 +36,8 @@ import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
 import org.jetbrains.annotations.NotNull;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MenuActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -52,9 +56,13 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     private DatabaseReference firebaseRef = ConfiguracaoFireBase.getDatabaseReference();
     private DatabaseReference usuarioRef;
     private ValueEventListener valueEventListenerUsuario;
+    private ValueEventListener valueEventListenerMovimentacao;
 
     private RecyclerView recyclerView;
-
+    private AdapterMovimentacao adapterMovimentacao;
+    private List<Movimentacao> movimentacao = new ArrayList<>();
+    private DatabaseReference movimentacaoRef;
+    private String mesAnoSelecionado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,10 +71,15 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
         inicializarComponetes();
 
+        adapterMovimentacao = new AdapterMovimentacao(movimentacao, this);
+
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager( layoutManager );
         recyclerView.setHasFixedSize(true);
-        //recyclerView.setAdapter();
+        recyclerView.setAdapter(adapterMovimentacao);
+
+
+
 
 
 
@@ -90,10 +103,34 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        recuperarResumo();
+    public void recuperarMovimentacoes(){
+
+        String emialUsuario = autenticacao.getCurrentUser().getEmail();
+        String idUsuario = Base64Custom.codificarBase64(emialUsuario);
+        movimentacaoRef = firebaseRef.child("movimentacao")
+                                     .child(idUsuario)
+                                     .child( mesAnoSelecionado );
+
+        valueEventListenerMovimentacao = movimentacaoRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+
+                movimentacao.clear();
+
+                for(DataSnapshot dados: snapshot.getChildren()){
+                    Movimentacao movimentaco = dados.getValue(Movimentacao.class);
+                    movimentacao.add(movimentaco);
+                }
+
+                adapterMovimentacao.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
+
     }
 
     private void recuperarResumo() {
@@ -145,10 +182,18 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         CharSequence meses[] = {"Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"};
         calendarView.setTitleMonths(meses);
 
+        CalendarDay dataAtual = calendarView.getCurrentDate();
+        String mesSelecionado = String.format("%02d", (dataAtual.getMonth() + 1) );
+        mesAnoSelecionado = String.valueOf( mesSelecionado+ "" + dataAtual.getYear());
+
         calendarView.setOnMonthChangedListener(new OnMonthChangedListener() {
             @Override
             public void onMonthChanged(MaterialCalendarView widget, CalendarDay date) {
+                String mesSelecionado = String.format("%02d", (date.getMonth() + 1) );
+                mesAnoSelecionado = String.valueOf(mesSelecionado + "" + date.getYear());
 
+                movimentacaoRef.removeEventListener(valueEventListenerMovimentacao);
+                recuperarMovimentacoes();
             }
         });
     }
@@ -195,8 +240,16 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        recuperarResumo();
+        recuperarMovimentacoes();
+    }
+
+    @Override
     protected void onStop() {
         super.onStop();
         usuarioRef.removeEventListener(valueEventListenerUsuario);
+        movimentacaoRef.removeEventListener(valueEventListenerMovimentacao);
     }
 }
