@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -25,9 +24,7 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Base64;
-
-public class CadastroUsuario extends AppCompatActivity {
+public class CadastroUsuarioActivity extends AppCompatActivity {
 
    private EditText campoNome, campoEmail, campoSenha;
    private Button botaoCadastrar;
@@ -61,17 +58,17 @@ public class CadastroUsuario extends AppCompatActivity {
 
 
                         }else {
-                            Toast.makeText(CadastroUsuario.this,
+                            Toast.makeText(CadastroUsuarioActivity.this,
                                     "Preencha a senha!",
                                     Toast.LENGTH_SHORT).show();
                         }
                     }else {
-                        Toast.makeText(CadastroUsuario.this,
+                        Toast.makeText(CadastroUsuarioActivity.this,
                                 "Preencha o e-mail!",
                                 Toast.LENGTH_SHORT).show();
                     }
                 }else {
-                    Toast.makeText(CadastroUsuario.this,
+                    Toast.makeText(CadastroUsuarioActivity.this,
                             "Preencha o nome!",
                             Toast.LENGTH_SHORT).show();
                 }
@@ -122,7 +119,7 @@ public class CadastroUsuario extends AppCompatActivity {
                         e.printStackTrace();
                     }
 
-                    Toast.makeText(CadastroUsuario.this,
+                    Toast.makeText(CadastroUsuarioActivity.this,
                             excecao,
                             Toast.LENGTH_SHORT).show();
                 }

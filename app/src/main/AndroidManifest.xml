@@ -9,11 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HeroSorveteria">
-        <activity android:name=".Activity.LoginActivity"></activity>
-        <activity android:name=".Activity.Despesas" />
-        <activity android:name=".Activity.CadastroUsuario" />
+        <activity android:name=".Activity.ReceitaActivity"></activity>
+        <activity android:name=".Activity.LoginActivity" />
+        <activity android:name=".Activity.DespesasActivity" />
+        <activity android:name=".Activity.CadastroUsuarioActivity" />
         <activity android:name=".Activity.HistoricoDeVendas" />
-        <activity android:name=".Activity.CalculadoraTroco" />
+        <activity android:name=".Activity.CalculadoraTrocoActivity" />
         <activity android:name=".Activity.MenuActivity" />
         <activity android:name=".Activity.IniciarEverificar">
             <intent-filter>

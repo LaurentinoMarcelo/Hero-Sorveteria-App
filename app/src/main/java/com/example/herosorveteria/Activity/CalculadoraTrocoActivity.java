@@ -9,10 +9,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.herosorveteria.R;
+import com.example.herosorveteria.config.ConfiguracaoFireBase;
+import com.example.herosorveteria.model.Movimentacao;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class CalculadoraTroco extends AppCompatActivity {
+public class CalculadoraTrocoActivity extends AppCompatActivity {
 
     private DatabaseReference registroVendas = FirebaseDatabase.getInstance().getReference();
     EditText valorPago;
@@ -20,6 +23,13 @@ public class CalculadoraTroco extends AppCompatActivity {
     TextView viewTroco;
     Button btnCalcularTroco;
     Button btnRegistrarVenda;
+
+    private Movimentacao movimentacao;
+    private DatabaseReference firebaseRef = ConfiguracaoFireBase.getDatabaseReference();
+    private FirebaseAuth autenticacao = ConfiguracaoFireBase.getFireBaseAutenticacao();
+    private Double receitaTotal;
+    private Double receitaGerada;
+    private Double receitaAtualizada;
 
 
     @Override

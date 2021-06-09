@@ -3,9 +3,9 @@ package com.example.herosorveteria.Activity;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.herosorveteria.R;
@@ -23,29 +23,28 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
-public class Despesas extends AppCompatActivity {
+public class ReceitaActivity extends AppCompatActivity {
 
     TextInputEditText campoData, campoCategoria, campoDescricao, campoValor;
     private Movimentacao movimentacao;
     private DatabaseReference firebaseRef = ConfiguracaoFireBase.getDatabaseReference();
     private FirebaseAuth autenticacao = ConfiguracaoFireBase.getFireBaseAutenticacao();
-    private Double despesaTotal;
-    private Double despesaGerada;
-    private Double despesaAtualizada;
+    private Double receitaTotal;
+    private Double receitaGerada;
+    private Double receitaAtualizada;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_despesas);
+        setContentView(R.layout.activity_receita);
 
         inicializarComponentes();
 
         campoData.setText(DateCustom.dataAtual());
 
-        recuperarDespesaTotal();
+        recuperarReceitaTotal();
 
     }
-
     private void inicializarComponentes() {
         campoData = findViewById(R.id.editData);
         campoCategoria = findViewById(R.id.editCategoria);
@@ -54,9 +53,9 @@ public class Despesas extends AppCompatActivity {
 
     }
 
-    public void salvarDespesas(View v){
-        validarCamposDespesas();
-        String dataDespesa = campoData.getText().toString();
+    public void salvarReceitas(View v){
+        validarCamposReceitas();
+        String dataReceita = campoData.getText().toString();
         Double valorRecuperado = Double.parseDouble(campoValor.getText().toString());
 
         movimentacao = new Movimentacao();
@@ -64,16 +63,19 @@ public class Despesas extends AppCompatActivity {
         movimentacao.setCategoria(campoCategoria.getText().toString());
         movimentacao.setDescricao(campoDescricao.getText().toString());
         movimentacao.setData(campoData.getText().toString());
-        movimentacao.setTipo("d");
+        movimentacao.setTipo("r");
 
-        despesaGerada = valorRecuperado;
-        despesaAtualizada = despesaTotal + despesaGerada;
+        receitaGerada = valorRecuperado;
+        receitaAtualizada = receitaTotal + receitaGerada;
 
-        movimentacao.salvar(dataDespesa);
+        movimentacao.salvar(dataReceita);
         atualizarDespesa();
+        finish();
+
+
     }
 
-    public Boolean validarCamposDespesas(){
+    public Boolean validarCamposReceitas(){
 
         String textoValor = campoValor.getText().toString();
         String textoData = campoData.getText().toString();
@@ -87,7 +89,7 @@ public class Despesas extends AppCompatActivity {
                         return true;
                     }else {
 
-                        Toast.makeText(Despesas.this,
+                        Toast.makeText(ReceitaActivity.this,
                                 "Preencha o campo Descrição!",
                                 Toast.LENGTH_SHORT).show();
                         return false;
@@ -95,7 +97,7 @@ public class Despesas extends AppCompatActivity {
 
                 }else {
 
-                    Toast.makeText(Despesas.this,
+                    Toast.makeText(ReceitaActivity.this,
                             "Preencha o campo Categoria!",
                             Toast.LENGTH_SHORT).show();
                     return false;
@@ -103,7 +105,7 @@ public class Despesas extends AppCompatActivity {
 
             }else {
 
-                Toast.makeText(Despesas.this,
+                Toast.makeText(ReceitaActivity.this,
                         "Preencha o campo Data!",
                         Toast.LENGTH_SHORT).show();
                 return false;
@@ -111,7 +113,7 @@ public class Despesas extends AppCompatActivity {
 
         }else {
 
-            Toast.makeText(Despesas.this,
+            Toast.makeText(ReceitaActivity.this,
                     "Preencha o campo Valor!",
                     Toast.LENGTH_SHORT).show();
             return false;
@@ -119,16 +121,17 @@ public class Despesas extends AppCompatActivity {
 
 
     }
-    public void recuperarDespesaTotal(){
-        String emialUsuario = autenticacao.getCurrentUser().getEmail();
-        String idUsuario = Base64Custom.codificarBase64(emialUsuario);
+
+    public void recuperarReceitaTotal(){
+        String emailUsuario = autenticacao.getCurrentUser().getEmail();
+        String idUsuario = Base64Custom.codificarBase64(emailUsuario);
         DatabaseReference usuarioRef = firebaseRef.child("usuarios").child(idUsuario);
 
         usuarioRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 Usuario usuario = snapshot.getValue(Usuario.class);
-                despesaTotal = usuario.getDespesas();
+                receitaTotal = usuario.getReceita();
 
             }
 
@@ -144,8 +147,13 @@ public class Despesas extends AppCompatActivity {
         String idUsuario = Base64Custom.codificarBase64(emialUsuario);
         DatabaseReference usuarioRef = firebaseRef.child("usuarios").child(idUsuario);
 
-        usuarioRef.child("despesas").setValue(despesaAtualizada);
+        usuarioRef.child("receita").setValue(receitaAtualizada);
     }
 
+    public void abrirTelaPrincipal(){
+        Intent i = new Intent(this, MenuActivity.class);
+        startActivity(i);
+        finish();
 
+    }
 }

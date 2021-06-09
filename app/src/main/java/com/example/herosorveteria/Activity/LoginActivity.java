@@ -19,8 +19,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthInvalidUserException;
-import com.google.firebase.auth.FirebaseAuthUserCollisionException;
-import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -128,7 +126,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void btnCadastrar(View v){
-        Intent i = new Intent(this, CadastroUsuario.class);
+        Intent i = new Intent(this, CadastroUsuarioActivity.class);
         startActivity(i);
         finish();
     }
