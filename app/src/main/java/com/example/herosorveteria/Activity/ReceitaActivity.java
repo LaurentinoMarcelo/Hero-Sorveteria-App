@@ -6,6 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.herosorveteria.R;
@@ -25,13 +30,21 @@ import org.jetbrains.annotations.NotNull;
 
 public class ReceitaActivity extends AppCompatActivity {
 
-    TextInputEditText campoData, campoCategoria, campoDescricao, campoValor;
+    TextInputEditText campoData, campoCategoria, campoDescricao,  valorPago, valorCompra;
+    TextView campoValor;
+    Spinner spinnerCategoria, spinnerFormaPagamento;
+    Button btnCalucarTroco, btnRegistrarVenda;
     private Movimentacao movimentacao;
     private DatabaseReference firebaseRef = ConfiguracaoFireBase.getDatabaseReference();
     private FirebaseAuth autenticacao = ConfiguracaoFireBase.getFireBaseAutenticacao();
     private Double receitaTotal;
     private Double receitaGerada;
     private Double receitaAtualizada;
+    private String[] formaPagamento = {"Dinheiro", "Cartão", "Delivery"};
+    private String[] categoria = {"Açaí", "Sorvete", "Picolé", "Churros", "Misturado"};
+    private String formaPagamentoSelecionado;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +57,60 @@ public class ReceitaActivity extends AppCompatActivity {
 
         recuperarReceitaTotal();
 
+        configurarAdapter();
+
+        selicionarSpinner();
+
     }
+
+    private void selicionarSpinner() {
+        formaPagamentoSelecionado = "Carregando...";
+        spinnerFormaPagamento.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int posicao, long l) {
+               switch (posicao){
+                   case 0:
+                       formaPagamentoSelecionado = "Dinheiro";
+                       break;
+                   case 1:
+                       formaPagamentoSelecionado = "Cartão";
+                       break;
+                   case 2:
+                       formaPagamentoSelecionado = "Delivery";
+                       break;
+
+               }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        Toast.makeText(this, formaPagamentoSelecionado,Toast.LENGTH_SHORT).show();
+    }
+
+    private void configurarAdapter() {
+
+        ArrayAdapter<String> adapterFormaPagamento = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, formaPagamento);
+        spinnerFormaPagamento.setAdapter(adapterFormaPagamento);
+
+        ArrayAdapter<String> adapterCategoria = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, categoria);
+        spinnerCategoria.setAdapter(adapterCategoria);
+    }
+
     private void inicializarComponentes() {
         campoData = findViewById(R.id.editData);
         campoCategoria = findViewById(R.id.editCategoria);
         campoDescricao = findViewById(R.id.editDescricao);
         campoValor = findViewById(R.id.editValor);
+        spinnerCategoria = findViewById(R.id.spinnerCategoria);
+        spinnerFormaPagamento = findViewById(R.id.spinnerFormaPagamento);
+        btnCalucarTroco = findViewById(R.id.buttonCalcular);
+        btnRegistrarVenda = findViewById(R.id.buttonRegistar);
+        valorPago = findViewById(R.id.editvalorPago);
+        valorCompra = findViewById(R.id.editValorCompra);
 
     }
 
@@ -71,9 +132,21 @@ public class ReceitaActivity extends AppCompatActivity {
         movimentacao.salvar(dataReceita);
         atualizarDespesa();
         finish();
-
-
     }
+     public void calcularTroco(View v){
+
+         String valorP = valorPago.getText().toString();
+         double valorPago = Double.parseDouble(valorP);
+
+         String valorC = valorCompra.getText().toString();
+         double valorCompra = Double.parseDouble(valorC);
+
+         double valorTroco = valorPago - valorCompra;
+         String valorT = Double.toString(valorTroco);
+
+         campoValor.setText("R$ " + valorT);
+
+     }
 
     public Boolean validarCamposReceitas(){
 

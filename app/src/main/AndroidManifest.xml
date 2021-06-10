@@ -14,7 +14,6 @@
         <activity android:name=".Activity.DespesasActivity" />
         <activity android:name=".Activity.CadastroUsuarioActivity" />
         <activity android:name=".Activity.HistoricoDeVendas" />
-        <activity android:name=".Activity.CalculadoraTrocoActivity" />
         <activity android:name=".Activity.MenuActivity" />
         <activity android:name=".Activity.IniciarEverificar">
             <intent-filter>

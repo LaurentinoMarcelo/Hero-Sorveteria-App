@@ -41,7 +41,7 @@ public class AdapterMovimentacao extends RecyclerView.Adapter<AdapterMovimentaca
 
         holder.titulo.setText(movimentacao.getDescricao());
         holder.valor.setText(String.valueOf(movimentacao.getValor()));
-        holder.categoria.setText(movimentacao.getCategoria());
+        holder.formaPagamento.setText(movimentacao.getFormaPagamento());
 
         if (movimentacao.getTipo().equals("d")) {
             holder.valor.setTextColor(context.getResources().getColor(R.color.red));
@@ -58,14 +58,14 @@ public class AdapterMovimentacao extends RecyclerView.Adapter<AdapterMovimentaca
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView titulo, valor, categoria;
+        TextView titulo, valor, formaPagamento;
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
             titulo = itemView.findViewById(R.id.textAdapterTitulo);
             valor = itemView.findViewById(R.id.textAdapterValor);
-            categoria = itemView.findViewById(R.id.textAdapterCategoria);
+            formaPagamento = itemView.findViewById(R.id.textAdapterFormaPagamento);
         }
 
     }

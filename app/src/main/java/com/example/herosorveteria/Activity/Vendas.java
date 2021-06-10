@@ -7,6 +7,7 @@ public class Vendas {
     private double valorTroco;
     private String formaPagamento;
 
+
     public Vendas(double valorCompra, double valorPago, double valorTroco, String formaPagamento) {
         this.valorPago = valorPago;
         this.valorCompra = valorCompra;

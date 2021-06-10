@@ -39,14 +39,14 @@
 
         </LinearLayout>
 
-            <TextView
-                android:id="@+id/textAdapterCategoria"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="5"
-                android:text="Categoria"
-                android:textColor="#696969"
-                android:textSize="14sp" />
+        <TextView
+            android:id="@+id/textAdapterFormaPagamento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:text="Forma de Pagamento"
+            android:textColor="#696969"
+            android:textSize="14sp" />
 
 
     </LinearLayout>

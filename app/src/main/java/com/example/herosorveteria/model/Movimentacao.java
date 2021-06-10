@@ -11,6 +11,7 @@ public class Movimentacao {
     private String data;
     private String categoria;
     private String descricao;
+    private String formaPagamento;
     private String tipo;
     private double valor;
 
@@ -31,6 +32,14 @@ public class Movimentacao {
                 .push()
                 .setValue(this);
 
+    }
+
+    public String getFormaPagamento() {
+        return formaPagamento;
+    }
+
+    public void setFormaPagamento(String formaPagamento) {
+        this.formaPagamento = formaPagamento;
     }
 
     public String getData() {

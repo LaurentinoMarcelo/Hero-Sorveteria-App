@@ -16,4 +16,32 @@
         android:name="com.example.herosorveteria.Activity.MenuActivity"
         android:label="activity_menu"
         tools:layout="@layout/activity_menu" />
+    <activity
+        android:id="@+id/historicoDeVendas"
+        android:name="com.example.herosorveteria.Activity.HistoricoDeVendas"
+        android:label="HistoricoDeVendas" />
+    <activity
+        android:id="@+id/cadastroUsuarioActivity"
+        android:name="com.example.herosorveteria.Activity.CadastroUsuarioActivity"
+        android:label="activity_cadastro_usuario"
+        tools:layout="@layout/activity_cadastro_usuario" />
+    <activity
+        android:id="@+id/iniciarEverificar"
+        android:name="com.example.herosorveteria.Activity.IniciarEverificar"
+        android:label="activity_iniciar_everificar"
+        tools:layout="@layout/activity_iniciar_everificar" />
+    <activity
+        android:id="@+id/calculadoraTrocoActivity"
+        android:name="com.example.herosorveteria.Activity.CalculadoraTrocoActivity"
+        android:label="activity_calculadora_troco"
+        tools:layout="@layout/activity_calculadora_troco" />
+    <activity
+        android:id="@+id/despesasActivity"
+        android:name="com.example.herosorveteria.Activity.DespesasActivity"
+        android:label="activity_receita"
+        tools:layout="@layout/activity_receita" />
+    <activity
+        android:id="@+id/receitaActivity"
+        android:name="com.example.herosorveteria.Activity.ReceitaActivity"
+        android:label="ReceitaActivity" />
 </navigation>

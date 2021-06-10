@@ -13,95 +13,180 @@
         android:layout_marginTop="1dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
-        android:background="@drawable/background_receita"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
 
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="300dp"
-            android:layout_height="70dp"
-            android:layout_marginBottom="15dp"
-            android:background="@drawable/campo_texto">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editValor"
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/cardview_shadow_end_color"
+                android:layout_height="70dp"
+                android:layout_margin="5dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editData"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:textColorHint="#000000"
+                    android:textSize="18sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="300dp"
+                android:layout_height="70dp"
+                android:layout_margin="5dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editValorCompra"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:hint="Valor da compra"
+                    android:inputType="numberDecimal"
+                    android:textColorHint="@color/Roxo" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="300dp"
+                android:layout_height="70dp"
+                android:layout_margin="5dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editvalorPago"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:hint="Valor pago"
+                    android:inputType="numberDecimal"
+                    android:textColorHint="@color/Roxo" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/editValor"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_margin="5dp"
                 android:gravity="center"
                 android:hint="R$ 00,00"
                 android:inputType="numberDecimal"
                 android:textColor="#000000"
                 android:textColorHint="@color/mr_cast_meta_black_scrim"
-                android:textSize="34sp"
+                android:textSize="18sp"
                 android:textStyle="bold" />
-        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
+            <!--<com.google.android.material.textfield.TextInputLayout
+                android:layout_width="300dp"
+                android:layout_height="50dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/editValor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:hint="R$ 00,00"
+                    android:inputType="numberDecimal"
+                    android:textColor="#000000"
+                    android:textColorHint="@color/mr_cast_meta_black_scrim"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </com.google.android.material.textfield.TextInputLayout>-->
+        </LinearLayout>
+
+
+        <LinearLayout
             android:layout_width="300dp"
-            android:layout_height="70dp"
-            android:layout_marginBottom="15dp"
-            android:background="@drawable/campo_texto">
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editData"
+            <Spinner
+                android:id="@+id/spinnerCategoria"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/cardview_shadow_end_color"
-                android:gravity="center"
-                android:hint="Ex: 06/06/2021"
-                android:textColorHint="#000000"
-                android:textSize="24sp" />
+                android:layout_height="50dp"
+                android:layout_weight="1" />
 
-        </com.google.android.material.textfield.TextInputLayout>
+            <Spinner
+                android:id="@+id/spinnerFormaPagamento"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_weight="1" />
+        </LinearLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="300dp"
             android:layout_height="70dp"
-            android:layout_marginBottom="15dp"
-            android:background="@drawable/campo_texto">
+            android:layout_margin="5dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editCategoria"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/cardview_shadow_end_color"
-                android:gravity="center"
+                android:layout_margin="5dp"
                 android:hint="Categoria"
-                android:inputType="text" />
+                android:inputType="text"
+                android:textColorHint="@color/Roxo" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="300dp"
             android:layout_height="70dp"
-            android:layout_marginBottom="30dp"
-            android:background="@drawable/campo_texto">
+            android:layout_margin="5dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editDescricao"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/cardview_shadow_end_color"
-                android:gravity="center"
+                android:layout_margin="5dp"
                 android:hint="Descrição"
-                android:inputType="text" />
+                android:inputType="text"
+                android:textColorHint="@color/Roxo" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabSalvar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            android:onClick="salvarReceitas"
-            app:backgroundTint="#59FF00"
-            app:srcCompat="@drawable/ic_checked_checkbox" />
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_margin="5dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/buttonCalcular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/botao_customizado_login"
+                android:onClick="calcularTroco"
+                android:text="Calcular"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/buttonRegistar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/botao_customizado_login"
+                android:onClick="salvarReceitas"
+                android:text="Registrar"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
