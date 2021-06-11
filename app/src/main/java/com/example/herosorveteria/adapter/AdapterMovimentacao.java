@@ -37,10 +37,14 @@ public class AdapterMovimentacao extends RecyclerView.Adapter<AdapterMovimentaca
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
+
         Movimentacao movimentacao = movimentacoes.get(position);
 
-        holder.titulo.setText(movimentacao.getDescricao());
-        holder.valor.setText(String.valueOf(movimentacao.getValor()));
+        double valor = movimentacao.getValor();
+        String valorFormatado = String.format("R$ %.2f", valor);
+
+        holder.titulo.setText(movimentacao.getCategoria());
+        holder.valor.setText(valorFormatado);
         holder.formaPagamento.setText(movimentacao.getFormaPagamento());
 
         if (movimentacao.getTipo().equals("d")) {

@@ -13,7 +13,7 @@ public class Movimentacao {
     private String descricao;
     private String formaPagamento;
     private String tipo;
-    private double valor;
+    private Double valor;
 
     public Movimentacao() {
 
@@ -74,11 +74,11 @@ public class Movimentacao {
         this.tipo = tipo;
     }
 
-    public double getValor() {
+    public Double getValor() {
         return valor;
     }
 
-    public void setValor(double valor) {
+    public void setValor(Double valor) {
         this.valor = valor;
     }
 

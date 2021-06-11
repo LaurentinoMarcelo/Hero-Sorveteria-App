@@ -30,7 +30,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class ReceitaActivity extends AppCompatActivity {
 
-    TextInputEditText campoData, campoCategoria, campoDescricao,  valorPago, valorCompra;
+    TextInputEditText campoData, campoDescricao, valorPago, valorCompra;
     TextView campoValor;
     Spinner spinnerCategoria, spinnerFormaPagamento;
     Button btnCalucarTroco, btnRegistrarVenda;
@@ -43,6 +43,8 @@ public class ReceitaActivity extends AppCompatActivity {
     private String[] formaPagamento = {"Dinheiro", "Cartão", "Delivery"};
     private String[] categoria = {"Açaí", "Sorvete", "Picolé", "Churros", "Misturado"};
     private String formaPagamentoSelecionado;
+    private String categoriaSelecionado;
+
 
 
 
@@ -64,23 +66,16 @@ public class ReceitaActivity extends AppCompatActivity {
     }
 
     private void selicionarSpinner() {
-        formaPagamentoSelecionado = "Carregando...";
         spinnerFormaPagamento.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int posicao, long l) {
-               switch (posicao){
-                   case 0:
-                       formaPagamentoSelecionado = "Dinheiro";
-                       break;
-                   case 1:
-                       formaPagamentoSelecionado = "Cartão";
-                       break;
-                   case 2:
-                       formaPagamentoSelecionado = "Delivery";
-                       break;
-
-               }
-
+              if(spinnerFormaPagamento.getSelectedItem().equals("Dinheiro")){
+                    formaPagamentoSelecionado = "Dinheiro";
+                }if(spinnerFormaPagamento.getSelectedItem().equals("Cartão")){
+                        formaPagamentoSelecionado = "Cartão";
+                    }if(spinnerFormaPagamento.getSelectedItem().equals("Delivery")){
+                            formaPagamentoSelecionado = "Delivery";
+                    }
             }
 
             @Override
@@ -88,7 +83,36 @@ public class ReceitaActivity extends AppCompatActivity {
 
             }
         });
-        Toast.makeText(this, formaPagamentoSelecionado,Toast.LENGTH_SHORT).show();
+
+        spinnerCategoria.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (i){
+                    case 0:
+                        categoriaSelecionado = "Açaí";
+                        break;
+                    case 1:
+                        categoriaSelecionado = "Sorvete";
+                        break;
+                    case 2:
+                        categoriaSelecionado = "Picolé";
+                        break;
+                    case 3:
+                        categoriaSelecionado = "Churros";
+                        break;
+                    case 4:
+                        categoriaSelecionado = "Misturado";
+                        break;
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
     }
 
     private void configurarAdapter() {
@@ -102,7 +126,6 @@ public class ReceitaActivity extends AppCompatActivity {
 
     private void inicializarComponentes() {
         campoData = findViewById(R.id.editData);
-        campoCategoria = findViewById(R.id.editCategoria);
         campoDescricao = findViewById(R.id.editDescricao);
         campoValor = findViewById(R.id.editValor);
         spinnerCategoria = findViewById(R.id.spinnerCategoria);
@@ -117,13 +140,14 @@ public class ReceitaActivity extends AppCompatActivity {
     public void salvarReceitas(View v){
         validarCamposReceitas();
         String dataReceita = campoData.getText().toString();
-        Double valorRecuperado = Double.parseDouble(campoValor.getText().toString());
+        Double valorRecuperado = Double.parseDouble(valorCompra.getText().toString());
 
         movimentacao = new Movimentacao();
         movimentacao.setValor(valorRecuperado);
-        movimentacao.setCategoria(campoCategoria.getText().toString());
+        movimentacao.setCategoria(categoriaSelecionado);
         movimentacao.setDescricao(campoDescricao.getText().toString());
         movimentacao.setData(campoData.getText().toString());
+        movimentacao.setFormaPagamento(formaPagamentoSelecionado);
         movimentacao.setTipo("r");
 
         receitaGerada = valorRecuperado;
@@ -142,9 +166,8 @@ public class ReceitaActivity extends AppCompatActivity {
          double valorCompra = Double.parseDouble(valorC);
 
          double valorTroco = valorPago - valorCompra;
-         String valorT = Double.toString(valorTroco);
-
-         campoValor.setText("R$ " + valorT);
+         String formatadoTroco = String.format("O troco é de R$ %.2f", valorTroco);
+         campoValor.setText(formatadoTroco);
 
      }
 
@@ -152,13 +175,14 @@ public class ReceitaActivity extends AppCompatActivity {
 
         String textoValor = campoValor.getText().toString();
         String textoData = campoData.getText().toString();
-        String textoCategoria = campoCategoria.getText().toString();
-        String textoDescricao = campoDescricao.getText().toString();
+        String textoCategoria = categoriaSelecionado;
+        String textoFormaPagamento = formaPagamentoSelecionado;
+
 
         if( !textoValor.isEmpty()){
             if( !textoData.isEmpty()){
                 if( !textoCategoria.isEmpty()){
-                    if( !textoDescricao.isEmpty()){
+                    if( !textoFormaPagamento.isEmpty()){
                         return true;
                     }else {
 

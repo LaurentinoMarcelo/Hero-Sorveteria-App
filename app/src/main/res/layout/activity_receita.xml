@@ -37,6 +37,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_margin="5dp"
+                    android:gravity="center"
                     android:textColorHint="#000000"
                     android:textSize="18sp" />
 
@@ -54,7 +55,10 @@
                     android:layout_margin="5dp"
                     android:hint="Valor da compra"
                     android:inputType="numberDecimal"
-                    android:textColorHint="@color/Roxo" />
+                    android:textColor="#A80CCB"
+                    android:textColorHighlight="#A80CCB"
+                    android:textColorHint="#A80CCB"
+                    android:textColorLink="#A80CCB" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -70,7 +74,10 @@
                     android:layout_margin="5dp"
                     android:hint="Valor pago"
                     android:inputType="numberDecimal"
-                    android:textColorHint="@color/Roxo" />
+                    android:textColor="#A80CCB"
+                    android:textColorHighlight="#A80CCB"
+                    android:textColorHint="#A80CCB"
+                    android:textColorLink="#A80CCB" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -83,25 +90,9 @@
                 android:inputType="numberDecimal"
                 android:textColor="#000000"
                 android:textColorHint="@color/mr_cast_meta_black_scrim"
-                android:textSize="18sp"
+                android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <!--<com.google.android.material.textfield.TextInputLayout
-                android:layout_width="300dp"
-                android:layout_height="50dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editValor"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:hint="R$ 00,00"
-                    android:inputType="numberDecimal"
-                    android:textColor="#000000"
-                    android:textColorHint="@color/mr_cast_meta_black_scrim"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-            </com.google.android.material.textfield.TextInputLayout>-->
         </LinearLayout>
 
 
@@ -122,23 +113,14 @@
                 android:id="@+id/spinnerFormaPagamento"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:textColor="#A80CCB"
+                android:textColorHighlight="#A80CCB"
+                android:textColorHint="#A80CCB"
+                android:textColorLink="#A80CCB"/>
         </LinearLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="300dp"
-            android:layout_height="70dp"
-            android:layout_margin="5dp">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editCategoria"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:hint="Categoria"
-                android:inputType="text"
-                android:textColorHint="@color/Roxo" />
-        </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="300dp"
