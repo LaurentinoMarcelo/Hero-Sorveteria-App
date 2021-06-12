@@ -6,7 +6,7 @@
         <item
             android:id="@+id/nav_calculadoraTroco"
             android:icon="@drawable/ic_calculadoratroco"
-            android:title="@string/menu_CalculadoraTroco" />
+            android:title="@string/menu_ReceitaTroco" />
         <item
             android:id="@+id/nav_cadastrarProduto"
             android:icon="@drawable/ic_cadastrarproduto"

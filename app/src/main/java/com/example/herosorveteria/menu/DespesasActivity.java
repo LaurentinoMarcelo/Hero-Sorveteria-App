@@ -1,4 +1,4 @@
-package com.example.herosorveteria.Activity;
+package com.example.herosorveteria.menu;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.herosorveteria.Activity.MenuActivity;
 import com.example.herosorveteria.R;
 import com.example.herosorveteria.config.ConfiguracaoFireBase;
 import com.example.herosorveteria.helper.Base64Custom;

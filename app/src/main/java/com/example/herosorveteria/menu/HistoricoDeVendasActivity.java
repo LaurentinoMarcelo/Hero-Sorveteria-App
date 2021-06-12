@@ -1,4 +1,4 @@
-package com.example.herosorveteria.Activity;
+package com.example.herosorveteria.menu;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,7 +21,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
-public class HistoricoDeVendas extends AppCompatActivity {
+public class HistoricoDeVendasActivity extends AppCompatActivity {
 
     private DatabaseReference registroVendas = FirebaseDatabase.getInstance().getReference();
 

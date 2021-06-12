@@ -1,4 +1,4 @@
-package com.example.herosorveteria.Activity;
+package com.example.herosorveteria.model;
 
 public class Vendas {
 

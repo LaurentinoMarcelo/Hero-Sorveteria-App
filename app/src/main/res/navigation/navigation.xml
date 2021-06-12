@@ -18,7 +18,7 @@
         tools:layout="@layout/activity_menu" />
     <activity
         android:id="@+id/historicoDeVendas"
-        android:name="com.example.herosorveteria.Activity.HistoricoDeVendas"
+        android:name="com.example.herosorveteria.menu.HistoricoDeVendasActivity"
         android:label="HistoricoDeVendas" />
     <activity
         android:id="@+id/cadastroUsuarioActivity"
@@ -27,7 +27,7 @@
         tools:layout="@layout/activity_cadastro_usuario" />
     <activity
         android:id="@+id/iniciarEverificar"
-        android:name="com.example.herosorveteria.Activity.IniciarEverificar"
+        android:name="com.example.herosorveteria.Activity.IniciarActivity"
         android:label="activity_iniciar_everificar"
         tools:layout="@layout/activity_iniciar_everificar" />
     <activity
@@ -37,11 +37,11 @@
         tools:layout="@layout/activity_calculadora_troco" />
     <activity
         android:id="@+id/despesasActivity"
-        android:name="com.example.herosorveteria.Activity.DespesasActivity"
+        android:name="com.example.herosorveteria.menu.DespesasActivity"
         android:label="activity_receita"
         tools:layout="@layout/activity_receita" />
     <activity
         android:id="@+id/receitaActivity"
-        android:name="com.example.herosorveteria.Activity.ReceitaActivity"
+        android:name="com.example.herosorveteria.menu.ReceitaActivity"
         android:label="ReceitaActivity" />
 </navigation>

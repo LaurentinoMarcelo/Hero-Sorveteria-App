@@ -9,7 +9,7 @@
     <string name="action_settings">Settings</string>
 
 
-    <string name="menu_CalculadoraTroco">Calculadora de troco</string>
+    <string name="menu_ReceitaTroco">Receita e Troco</string>
     <string name="menu_HistoricoVendas">Histórico Vendas</string>
     <string name="menu_ContasPagar">Contas a pagar</string>
     <string name="menu_ListadeClientes">Lista de Clientes</string>

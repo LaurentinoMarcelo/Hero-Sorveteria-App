@@ -2,24 +2,33 @@ package com.example.herosorveteria.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
-import android.widget.CalendarView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.example.herosorveteria.R;
 import com.example.herosorveteria.adapter.AdapterMovimentacao;
 import com.example.herosorveteria.config.ConfiguracaoFireBase;
 import com.example.herosorveteria.helper.Base64Custom;
+import com.example.herosorveteria.menu.CadastroProdutoActivity;
+import com.example.herosorveteria.menu.DespesasActivity;
+import com.example.herosorveteria.menu.HistoricoDeVendasActivity;
+import com.example.herosorveteria.menu.ListadeClientesActivity;
+import com.example.herosorveteria.menu.ReceitaActivity;
 import com.example.herosorveteria.model.Movimentacao;
 import com.example.herosorveteria.model.Usuario;
 import com.google.android.material.navigation.NavigationView;
@@ -60,9 +69,10 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
     private RecyclerView recyclerView;
     private AdapterMovimentacao adapterMovimentacao;
-    private List<Movimentacao> movimentacao = new ArrayList<>();
+    private List<Movimentacao> movimentacoes = new ArrayList<>();
     private DatabaseReference movimentacaoRef;
     private String mesAnoSelecionado;
+    private Movimentacao movimentacao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,19 +80,14 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_menu);
 
         inicializarComponetes();
+        swipe();
 
-        adapterMovimentacao = new AdapterMovimentacao(movimentacao, this);
+        adapterMovimentacao = new AdapterMovimentacao(movimentacoes, this);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager( layoutManager );
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapterMovimentacao);
-
-
-
-
-
-
         //Toolbar
 
         setSupportActionBar(toolbar);
@@ -103,6 +108,78 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+    public void swipe(){
+
+        ItemTouchHelper.Callback itemTouch = new ItemTouchHelper.Callback() {
+            @Override
+            public int getMovementFlags(@NonNull @NotNull RecyclerView recyclerView, @NonNull @NotNull RecyclerView.ViewHolder viewHolder) {
+                int dragsFlags = ItemTouchHelper.ACTION_STATE_IDLE;
+                int swipeFlags = ItemTouchHelper.START|ItemTouchHelper.END;
+                return makeMovementFlags(dragsFlags, swipeFlags);
+            }
+
+            @Override
+            public boolean onMove(@NonNull @NotNull RecyclerView recyclerView, @NonNull @NotNull RecyclerView.ViewHolder viewHolder, @NonNull @NotNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull @NotNull RecyclerView.ViewHolder viewHolder, int direction) {
+                excluirMovimentos(viewHolder);
+            }
+        };
+
+        new ItemTouchHelper(itemTouch).attachToRecyclerView(recyclerView);
+
+    }
+     public void excluirMovimentos(RecyclerView.ViewHolder viewHolder){
+         AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+         alertDialog.setTitle("Excluir, Movimentação da Conta");
+         alertDialog.setMessage("Você tem certeza que deseja excluir essa movimentação?");
+         alertDialog.setCancelable(false);
+
+         alertDialog.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+             @Override
+             public void onClick(DialogInterface dialogInterface, int i) {
+                int position = viewHolder.getAdapterPosition();
+                movimentacao = movimentacoes.get(position);
+
+                 String emialUsuario = autenticacao.getCurrentUser().getEmail();
+                 String idUsuario = Base64Custom.codificarBase64(emialUsuario);
+                 movimentacaoRef = firebaseRef.child("movimentacao")
+                         .child(idUsuario)
+                         .child( mesAnoSelecionado );
+
+                 movimentacaoRef.child(movimentacao.getKey()).removeValue();
+                 adapterMovimentacao.notifyItemRemoved(position);
+                 atualizarSaldo();
+             }
+         });
+         alertDialog.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+             @Override
+             public void onClick(DialogInterface dialogInterface, int i) {
+                 Toast.makeText(MenuActivity.this, "Cancelado",
+                         Toast.LENGTH_SHORT).show();
+                 adapterMovimentacao.notifyDataSetChanged();
+
+             }
+         });
+         AlertDialog alert = alertDialog.create();
+         alert.show();
+     }
+
+    public void atualizarSaldo(){
+
+        String emialUsuario = autenticacao.getCurrentUser().getEmail();
+        String idUsuario = Base64Custom.codificarBase64(emialUsuario);
+        usuarioRef = firebaseRef.child("usuarios").child(idUsuario);
+
+        if( movimentacao.getTipo().equals("r")){
+            receitaTotal = receitaTotal - movimentacao.getValor();
+            usuarioRef.child("receita").setValue(receitaTotal);
+        }
+
+    }
     public void recuperarMovimentacoes(){
 
         String emialUsuario = autenticacao.getCurrentUser().getEmail();
@@ -115,11 +192,12 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
 
-                movimentacao.clear();
+                movimentacoes.clear();
 
                 for(DataSnapshot dados: snapshot.getChildren()){
                     Movimentacao movimentaco = dados.getValue(Movimentacao.class);
-                    movimentacao.add(movimentaco);
+                    movimentaco.setKey(dados.getKey());
+                    movimentacoes.add(movimentaco);
                 }
 
                 adapterMovimentacao.notifyDataSetChanged();
@@ -211,7 +289,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.nav_cadastrarProduto:
-                Intent cp = new Intent(this, MenuActivity.class);
+                Intent cp = new Intent(this, ListaProdutos.class);
                 startActivity(cp);
                 break;
             case R.id.nav_calculadoraTroco:
@@ -219,13 +297,18 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(ct);
                 break;
             case R.id.nav_historicoVendas:
-                Intent hv = new Intent(this, HistoricoDeVendas.class);
+                Intent hv = new Intent(this, HistoricoDeVendasActivity.class);
                 startActivity(hv);
                 break;
             case R.id.nav_contasPagar:
                 Intent dP = new Intent(this, DespesasActivity.class);
                 startActivity(dP);
                 break;
+            case R.id.nav_listaClientes:
+                Intent lC = new Intent(this, ListadeClientesActivity.class);
+                startActivity(lC);
+                break;
+
             case R.id.nav_sair:
                 autenticacao = ConfiguracaoFireBase.getFireBaseAutenticacao();
                 autenticacao.signOut();

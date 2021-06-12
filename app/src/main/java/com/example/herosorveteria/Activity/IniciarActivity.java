@@ -13,7 +13,7 @@ import com.example.herosorveteria.R;
 import com.example.herosorveteria.config.ConfiguracaoFireBase;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class IniciarEverificar extends AppCompatActivity {
+public class IniciarActivity extends AppCompatActivity {
 
     private FirebaseAuth autenticacao;
 
