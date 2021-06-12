@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.herosorveteria.R;
+import com.example.herosorveteria.cadastro.CadastroUsuarioActivity;
 import com.example.herosorveteria.config.ConfiguracaoFireBase;
 import com.example.herosorveteria.model.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;

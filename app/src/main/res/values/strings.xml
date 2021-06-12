@@ -13,7 +13,7 @@
     <string name="menu_HistoricoVendas">Histórico Vendas</string>
     <string name="menu_ContasPagar">Contas a pagar</string>
     <string name="menu_ListadeClientes">Lista de Clientes</string>
-    <string name="menu_CadatroProdutos">Cadastro de Produtos</string>
+    <string name="menu_EstoqueProdutos">Estoque de Produtos</string>
     <string name="menu_Configuracao">Configurações</string>
     <string name="menu_EntrarContato">Entrar em contato</string>
     <string name="menu_ListaFornecedores">Lista de Fornecedores</string>

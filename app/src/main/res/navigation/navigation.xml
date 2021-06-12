@@ -22,7 +22,7 @@
         android:label="HistoricoDeVendas" />
     <activity
         android:id="@+id/cadastroUsuarioActivity"
-        android:name="com.example.herosorveteria.Activity.CadastroUsuarioActivity"
+        android:name="com.example.herosorveteria.cadastro.CadastroUsuarioActivity"
         android:label="activity_cadastro_usuario"
         tools:layout="@layout/activity_cadastro_usuario" />
     <activity

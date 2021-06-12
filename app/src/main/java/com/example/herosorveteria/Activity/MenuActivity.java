@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,12 +23,12 @@ import com.example.herosorveteria.R;
 import com.example.herosorveteria.adapter.AdapterMovimentacao;
 import com.example.herosorveteria.config.ConfiguracaoFireBase;
 import com.example.herosorveteria.helper.Base64Custom;
-import com.example.herosorveteria.menu.CadastroProdutoActivity;
 import com.example.herosorveteria.menu.DespesasActivity;
 import com.example.herosorveteria.menu.HistoricoDeVendasActivity;
 import com.example.herosorveteria.menu.ListadeClientesActivity;
+import com.example.herosorveteria.menu.ProdutoActivity;
 import com.example.herosorveteria.menu.ReceitaActivity;
-import com.example.herosorveteria.model.Movimentacao;
+import com.example.herosorveteria.model.MovimentacaoReceitas;
 import com.example.herosorveteria.model.Usuario;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -69,10 +68,10 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
     private RecyclerView recyclerView;
     private AdapterMovimentacao adapterMovimentacao;
-    private List<Movimentacao> movimentacoes = new ArrayList<>();
+    private List<MovimentacaoReceitas> movimentacoes = new ArrayList<>();
     private DatabaseReference movimentacaoRef;
     private String mesAnoSelecionado;
-    private Movimentacao movimentacao;
+    private MovimentacaoReceitas movimentacaoReceitas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,7 +141,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
              @Override
              public void onClick(DialogInterface dialogInterface, int i) {
                 int position = viewHolder.getAdapterPosition();
-                movimentacao = movimentacoes.get(position);
+                movimentacaoReceitas = movimentacoes.get(position);
 
                  String emialUsuario = autenticacao.getCurrentUser().getEmail();
                  String idUsuario = Base64Custom.codificarBase64(emialUsuario);
@@ -150,7 +149,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
                          .child(idUsuario)
                          .child( mesAnoSelecionado );
 
-                 movimentacaoRef.child(movimentacao.getKey()).removeValue();
+                 movimentacaoRef.child(movimentacaoReceitas.getKey()).removeValue();
                  adapterMovimentacao.notifyItemRemoved(position);
                  atualizarSaldo();
              }
@@ -174,8 +173,8 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         String idUsuario = Base64Custom.codificarBase64(emialUsuario);
         usuarioRef = firebaseRef.child("usuarios").child(idUsuario);
 
-        if( movimentacao.getTipo().equals("r")){
-            receitaTotal = receitaTotal - movimentacao.getValor();
+        if( movimentacaoReceitas.getTipo().equals("r")){
+            receitaTotal = receitaTotal - movimentacaoReceitas.getValor();
             usuarioRef.child("receita").setValue(receitaTotal);
         }
 
@@ -195,7 +194,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
                 movimentacoes.clear();
 
                 for(DataSnapshot dados: snapshot.getChildren()){
-                    Movimentacao movimentaco = dados.getValue(Movimentacao.class);
+                    MovimentacaoReceitas movimentaco = dados.getValue(MovimentacaoReceitas.class);
                     movimentaco.setKey(dados.getKey());
                     movimentacoes.add(movimentaco);
                 }
@@ -288,8 +287,8 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
         switch (item.getItemId()){
-            case R.id.nav_cadastrarProduto:
-                Intent cp = new Intent(this, ListaProdutos.class);
+            case R.id.nav_EstoqueProduto:
+                Intent cp = new Intent(this, ProdutoActivity.class);
                 startActivity(cp);
                 break;
             case R.id.nav_calculadoraTroco:

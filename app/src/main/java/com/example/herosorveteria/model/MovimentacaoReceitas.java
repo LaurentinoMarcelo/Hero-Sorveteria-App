@@ -6,7 +6,7 @@ import com.example.herosorveteria.helper.DateCustom;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 
-public class Movimentacao {
+public class MovimentacaoReceitas {
 
     private String data;
     private String categoria;
@@ -16,7 +16,7 @@ public class Movimentacao {
     private Double valor;
     private String key;
 
-    public Movimentacao() {
+    public MovimentacaoReceitas() {
 
     }
 

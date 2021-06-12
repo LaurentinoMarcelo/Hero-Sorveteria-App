@@ -18,7 +18,7 @@ import com.example.herosorveteria.R;
 import com.example.herosorveteria.config.ConfiguracaoFireBase;
 import com.example.herosorveteria.helper.Base64Custom;
 import com.example.herosorveteria.helper.DateCustom;
-import com.example.herosorveteria.model.Movimentacao;
+import com.example.herosorveteria.model.MovimentacaoReceitas;
 import com.example.herosorveteria.model.Usuario;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,7 +35,7 @@ public class ReceitaActivity extends AppCompatActivity {
     TextView campoValor;
     Spinner spinnerCategoria, spinnerFormaPagamento;
     Button btnCalucarTroco, btnRegistrarVenda;
-    private Movimentacao movimentacao;
+    private MovimentacaoReceitas movimentacaoReceitas;
     private DatabaseReference firebaseRef = ConfiguracaoFireBase.getDatabaseReference();
     private FirebaseAuth autenticacao = ConfiguracaoFireBase.getFireBaseAutenticacao();
     private Double receitaTotal;
@@ -143,18 +143,18 @@ public class ReceitaActivity extends AppCompatActivity {
         String dataReceita = campoData.getText().toString();
         Double valorRecuperado = Double.parseDouble(valorCompra.getText().toString());
 
-        movimentacao = new Movimentacao();
-        movimentacao.setValor(valorRecuperado);
-        movimentacao.setCategoria(categoriaSelecionado);
-        movimentacao.setDescricao(campoDescricao.getText().toString());
-        movimentacao.setData(campoData.getText().toString());
-        movimentacao.setFormaPagamento(formaPagamentoSelecionado);
-        movimentacao.setTipo("r");
+        movimentacaoReceitas = new MovimentacaoReceitas();
+        movimentacaoReceitas.setValor(valorRecuperado);
+        movimentacaoReceitas.setCategoria(categoriaSelecionado);
+        movimentacaoReceitas.setDescricao(campoDescricao.getText().toString());
+        movimentacaoReceitas.setData(campoData.getText().toString());
+        movimentacaoReceitas.setFormaPagamento(formaPagamentoSelecionado);
+        movimentacaoReceitas.setTipo("r");
 
         receitaGerada = valorRecuperado;
         receitaAtualizada = receitaTotal + receitaGerada;
 
-        movimentacao.salvar(dataReceita);
+        movimentacaoReceitas.salvar(dataReceita);
         atualizarDespesa();
         finish();
     }

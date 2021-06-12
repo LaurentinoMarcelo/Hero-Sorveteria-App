@@ -8,9 +8,9 @@
             android:icon="@drawable/ic_calculadoratroco"
             android:title="@string/menu_ReceitaTroco" />
         <item
-            android:id="@+id/nav_cadastrarProduto"
+            android:id="@+id/nav_EstoqueProduto"
             android:icon="@drawable/ic_cadastrarproduto"
-            android:title="@string/menu_CadatroProdutos" />
+            android:title="@string/menu_EstoqueProdutos" />
         <item
             android:id="@+id/nav_historicoVendas"
             android:icon="@drawable/ic_historicovendas"

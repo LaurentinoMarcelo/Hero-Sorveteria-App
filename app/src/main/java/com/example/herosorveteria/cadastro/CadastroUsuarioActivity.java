@@ -1,4 +1,4 @@
-package com.example.herosorveteria.Activity;
+package com.example.herosorveteria.cadastro;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.herosorveteria.Activity.MenuActivity;
 import com.example.herosorveteria.R;
 import com.example.herosorveteria.config.ConfiguracaoFireBase;
 import com.example.herosorveteria.helper.Base64Custom;
@@ -130,5 +131,6 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
     public void entrarMenu(){
         Intent i = new Intent(this, MenuActivity.class);
         startActivity(i);
+        finish();
     }
 }

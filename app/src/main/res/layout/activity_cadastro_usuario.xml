@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/planofundologin"
     android:gravity="center"
-    tools:context=".Activity.CadastroUsuarioActivity">
+    tools:context=".cadastro.CadastroUsuarioActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

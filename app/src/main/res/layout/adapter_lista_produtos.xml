@@ -19,23 +19,31 @@
 
             <TextView
                 android:id="@+id/textAdapterProduto"
-                android:layout_width="wrap_content"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
-                android:text="Titulo"
+                android:text="Produto"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/textAdapterQuantidade"
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="end"
-                android:text="valor"
+                android:gravity="center"
+                android:text="1"
                 android:textColor="#00D39E"
                 android:textSize="16sp"
                 android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textAdapterUnidade"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:gravity="left"
+                android:text="kilo" />
 
         </LinearLayout>
 
@@ -44,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="5"
-            android:text="Forma de Pagamento"
+            android:text="Categoria"
             android:textColor="#696969"
             android:textSize="14sp" />
 

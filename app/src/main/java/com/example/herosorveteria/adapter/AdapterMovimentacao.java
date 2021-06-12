@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.herosorveteria.R;
-import com.example.herosorveteria.model.Movimentacao;
+import com.example.herosorveteria.model.MovimentacaoReceitas;
 
 import java.util.List;
 
@@ -20,10 +20,10 @@ import java.util.List;
 
 public class AdapterMovimentacao extends RecyclerView.Adapter<AdapterMovimentacao.MyViewHolder> {
 
-    List<Movimentacao> movimentacoes;
+    List<MovimentacaoReceitas> movimentacoes;
     Context context;
 
-    public AdapterMovimentacao(List<Movimentacao> movimentacoes, Context context) {
+    public AdapterMovimentacao(List<MovimentacaoReceitas> movimentacoes, Context context) {
         this.movimentacoes = movimentacoes;
         this.context = context;
     }
@@ -38,18 +38,18 @@ public class AdapterMovimentacao extends RecyclerView.Adapter<AdapterMovimentaca
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
-        Movimentacao movimentacao = movimentacoes.get(position);
+        MovimentacaoReceitas movimentacaoReceitas = movimentacoes.get(position);
 
-        double valor = movimentacao.getValor();
+        double valor = movimentacaoReceitas.getValor();
         String valorFormatado = String.format("R$ %.2f", valor);
 
-        holder.titulo.setText(movimentacao.getCategoria());
+        holder.titulo.setText(movimentacaoReceitas.getCategoria());
         holder.valor.setText(valorFormatado);
-        holder.formaPagamento.setText(movimentacao.getFormaPagamento());
+        holder.formaPagamento.setText(movimentacaoReceitas.getFormaPagamento());
 
-        if (movimentacao.getTipo().equals("d")) {
+        if (movimentacaoReceitas.getTipo().equals("d")) {
             holder.valor.setTextColor(context.getResources().getColor(R.color.red));
-            holder.valor.setText("-" + movimentacao.getValor());
+            holder.valor.setText("-" + movimentacaoReceitas.getValor());
         }
     }
 
@@ -67,9 +67,9 @@ public class AdapterMovimentacao extends RecyclerView.Adapter<AdapterMovimentaca
         public MyViewHolder(View itemView) {
             super(itemView);
 
-            titulo = itemView.findViewById(R.id.textAdapterTitulo);
-            valor = itemView.findViewById(R.id.textAdapterValor);
-            formaPagamento = itemView.findViewById(R.id.textAdapterFormaPagamento);
+            titulo = itemView.findViewById(R.id.textAdapterProduto);
+            valor = itemView.findViewById(R.id.textAdapterQuantidade);
+            formaPagamento = itemView.findViewById(R.id.textAdapterFormaCategoria);
         }
 
     }
