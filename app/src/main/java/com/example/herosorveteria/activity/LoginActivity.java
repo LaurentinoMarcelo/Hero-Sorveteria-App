@@ -1,4 +1,4 @@
-package com.example.herosorveteria.Activity;
+package com.example.herosorveteria.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

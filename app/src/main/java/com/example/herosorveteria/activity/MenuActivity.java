@@ -1,4 +1,4 @@
-package com.example.herosorveteria.Activity;
+package com.example.herosorveteria.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -83,6 +83,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
         adapterMovimentacao = new AdapterMovimentacao(movimentacoes, this);
 
+        //Configurar RecicleView
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager( layoutManager );
         recyclerView.setHasFixedSize(true);

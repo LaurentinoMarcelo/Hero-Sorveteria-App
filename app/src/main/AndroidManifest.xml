@@ -14,12 +14,12 @@
         <activity android:name=".menu.ListadeClientesActivity" />
         <activity android:name=".menu.ProdutoActivity" />
         <activity android:name=".menu.ReceitaActivity" />
-        <activity android:name=".Activity.LoginActivity" />
+        <activity android:name=".activity.LoginActivity" />
         <activity android:name=".menu.DespesasActivity" />
         <activity android:name=".cadastro.CadastroUsuarioActivity" />
         <activity android:name=".menu.HistoricoDeVendasActivity" />
-        <activity android:name=".Activity.MenuActivity" />
-        <activity android:name=".Activity.IniciarActivity">
+        <activity android:name=".activity.MenuActivity" />
+        <activity android:name=".activity.IniciarActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

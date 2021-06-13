@@ -14,10 +14,6 @@ import com.example.herosorveteria.model.MovimentacaoReceitas;
 
 import java.util.List;
 
-/**
- * Created by Jamilton Damasceno
- */
-
 public class AdapterMovimentacao extends RecyclerView.Adapter<AdapterMovimentacao.MyViewHolder> {
 
     List<MovimentacaoReceitas> movimentacoes;
@@ -67,9 +63,9 @@ public class AdapterMovimentacao extends RecyclerView.Adapter<AdapterMovimentaca
         public MyViewHolder(View itemView) {
             super(itemView);
 
-            titulo = itemView.findViewById(R.id.textAdapterProduto);
-            valor = itemView.findViewById(R.id.textAdapterQuantidade);
-            formaPagamento = itemView.findViewById(R.id.textAdapterFormaCategoria);
+            titulo = itemView.findViewById(R.id.textAdapterNomeProduto);
+            valor = itemView.findViewById(R.id.textAdapterQuantidadeProduto);
+            formaPagamento = itemView.findViewById(R.id.textAdapterCategoriaProduto);
         }
 
     }

@@ -12,20 +12,18 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.herosorveteria.Activity.MenuActivity;
+import com.example.herosorveteria.activity.MenuActivity;
 import com.example.herosorveteria.R;
-import com.example.herosorveteria.menu.ProdutoActivity;
 import com.example.herosorveteria.model.Produtos;
 import com.google.android.material.textfield.TextInputEditText;
 
 public class CadastroProdutoActivity extends AppCompatActivity {
 
-    TextInputEditText campoNomeProduto, campoValorCompra, campoValorVenda;
+    TextInputEditText campoNomeProduto, campoValorCompra, campoValorVenda, campoQuantidadeProduto;
     Spinner spinnerCategoriaProduto, spinnerQuantidadeProduto, spinnerUnidadeProduto;
     TextView valorLucro;
     Button btnCadastrarProduto;
     private String[] categoriaProduto = {"Açaí", "Sorvete", "Picolé", "Insumos Embalagens", "Insumos Escritórios", "Acompanhamento", "Produtos Limpeza"};
-    private String[] quantidadeProduto = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",};
     private String[] unidadeProduto = {"Kilo", "Caixa", "Litros"};
     private String categoriaProdutoSelecionado;
     private String quantidadeProdutoSelecionado;
@@ -48,8 +46,8 @@ public class CadastroProdutoActivity extends AppCompatActivity {
         campoNomeProduto = findViewById(R.id.textNomeProduto);
         campoValorCompra = findViewById(R.id.textValorCompraProduto);
         campoValorVenda = findViewById(R.id.textValorVendaProduto);
+        campoQuantidadeProduto = findViewById(R.id.quantiadeProduto);
         spinnerCategoriaProduto = findViewById(R.id.spinnerCategoriaProduto);
-        spinnerQuantidadeProduto = findViewById(R.id.spinnerQuantidadeProduto);
         spinnerUnidadeProduto = findViewById(R.id.spinnerUnidadeProduto);
         valorLucro = findViewById(R.id.textLucro);
         btnCadastrarProduto = findViewById(R.id.btnCadastrarProduto);
@@ -89,48 +87,6 @@ public class CadastroProdutoActivity extends AppCompatActivity {
             }
         });
 
-        spinnerQuantidadeProduto.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                switch (i) {
-                    case 0:
-                        quantidadeProdutoSelecionado = "1";
-                        break;
-                    case 1:
-                        quantidadeProdutoSelecionado = "2";
-                        break;
-                    case 2:
-                        quantidadeProdutoSelecionado = "3";
-                        break;
-                    case 3:
-                        quantidadeProdutoSelecionado = "4";
-                        break;
-                    case 4:
-                        quantidadeProdutoSelecionado = "5";
-                        break;
-                    case 6:
-                        quantidadeProdutoSelecionado = "6";
-                        break;
-                    case 7:
-                        quantidadeProdutoSelecionado = "7";
-                        break;
-                    case 8:
-                        quantidadeProdutoSelecionado = "8";
-                        break;
-                    case 9:
-                        quantidadeProdutoSelecionado = "9";
-                        break;
-                    case 10:
-                        quantidadeProdutoSelecionado = "10";
-                        break;
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
 
         spinnerUnidadeProduto.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -159,8 +115,6 @@ public class CadastroProdutoActivity extends AppCompatActivity {
         ArrayAdapter<String> adapterCategoriaProduto = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, categoriaProduto);
         spinnerCategoriaProduto.setAdapter(adapterCategoriaProduto);
 
-        ArrayAdapter<String> adapterQuantidadeProduto = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, quantidadeProduto);
-        spinnerQuantidadeProduto.setAdapter(adapterQuantidadeProduto);
 
         ArrayAdapter<String> adapterUnidadeProduto = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, unidadeProduto);
         spinnerUnidadeProduto.setAdapter(adapterUnidadeProduto);
@@ -170,15 +124,16 @@ public class CadastroProdutoActivity extends AppCompatActivity {
         String nomeProduto = campoNomeProduto.getText().toString();
         String valorProduto = campoValorCompra.getText().toString();
         String valorVenda = campoValorVenda.getText().toString();
+        String quantidadeProduto = campoQuantidadeProduto.getText().toString();
 
         validarCampos();
-        produto = new Produtos();
-        produto.setNomeProduto(nomeProduto);
-        produto.setValorProduto(valorProduto);
-        produto.setValorVenda(valorVenda);
-        produto.setCategoriaProduto(categoriaProdutoSelecionado);
-        produto.setQuantidadeProduto(quantidadeProdutoSelecionado);
-        produto.setUnidadeProduto(unidadeProdutoSelecionado);
+         produto = new Produtos(nomeProduto,
+                                valorProduto,
+                                valorVenda,
+                                categoriaProdutoSelecionado,
+                                quantidadeProduto,
+                                unidadeProdutoSelecionado);
+
         produto.salvar();
 
         voltarTelaPrincipal();
@@ -191,14 +146,23 @@ public class CadastroProdutoActivity extends AppCompatActivity {
         String nomeProduto = campoNomeProduto.getText().toString();
         String valorCompra = campoValorCompra.getText().toString();
         String valorVenda = campoValorVenda.getText().toString();
+        String qauntidadeProduto = campoQuantidadeProduto.getText().toString();
 
         if (!nomeProduto.isEmpty()) {
             if (!valorCompra.isEmpty()) {
                 if (!valorVenda.isEmpty()) {
-                    return true;
+                    if(!qauntidadeProduto.isEmpty()){
+                        return true;
+                    }else {
+                        Toast.makeText(CadastroProdutoActivity.this,
+                                "Preencha a quantidade produto!",
+                                Toast.LENGTH_SHORT).show();
+                        return false;
+                    }
+
                 } else {
                     Toast.makeText(CadastroProdutoActivity.this,
-                            "Preencha o valor da venda",
+                            "Preencha o valor da venda1",
                             Toast.LENGTH_SHORT).show();
                     return false;
                 }

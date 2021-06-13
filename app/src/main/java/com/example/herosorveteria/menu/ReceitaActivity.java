@@ -13,7 +13,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.herosorveteria.Activity.MenuActivity;
+import com.example.herosorveteria.activity.MenuActivity;
 import com.example.herosorveteria.R;
 import com.example.herosorveteria.config.ConfiguracaoFireBase;
 import com.example.herosorveteria.helper.Base64Custom;

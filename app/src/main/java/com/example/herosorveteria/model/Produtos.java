@@ -15,8 +15,13 @@ public class Produtos {
     String quantidadeProduto;
     String unidadeProduto;
 
-    public Produtos() {
-
+    public Produtos(String nomeProduto, String valorProduto, String valorVenda, String categoriaProduto, String quantidadeProduto, String unidadeProduto) {
+        this.nomeProduto = nomeProduto;
+        this.valorProduto = valorProduto;
+        this.valorVenda = valorVenda;
+        this.categoriaProduto = categoriaProduto;
+        this.quantidadeProduto = quantidadeProduto;
+        this.unidadeProduto = unidadeProduto;
     }
 
     public void salvar(){

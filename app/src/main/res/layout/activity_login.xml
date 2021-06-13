@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/planofundologin"
     android:hapticFeedbackEnabled="true"
-    tools:context=".Activity.LoginActivity" >
+    tools:context=".activity.LoginActivity" >
 
     <LinearLayout
         android:layout_width="409dp"

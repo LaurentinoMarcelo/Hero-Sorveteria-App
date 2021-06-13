@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:background="@drawable/header"
-    tools:context=".Activity.IniciarActivity">
+    tools:context=".activity.IniciarActivity">
 
     <ImageView
         android:id="@+id/logoView"

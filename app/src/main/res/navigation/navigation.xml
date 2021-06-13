@@ -8,12 +8,12 @@
 
     <activity
         android:id="@+id/loginActivity"
-        android:name="com.example.herosorveteria.Activity.LoginActivity"
+        android:name="com.example.herosorveteria.activity.LoginActivity"
         android:label="activity_login"
         tools:layout="@layout/activity_login" />
     <activity
         android:id="@+id/menuActivity"
-        android:name="com.example.herosorveteria.Activity.MenuActivity"
+        android:name="com.example.herosorveteria.activity.MenuActivity"
         android:label="activity_menu"
         tools:layout="@layout/activity_menu" />
     <activity
@@ -27,12 +27,12 @@
         tools:layout="@layout/activity_cadastro_usuario" />
     <activity
         android:id="@+id/iniciarEverificar"
-        android:name="com.example.herosorveteria.Activity.IniciarActivity"
+        android:name="com.example.herosorveteria.activity.IniciarActivity"
         android:label="activity_iniciar_everificar"
         tools:layout="@layout/activity_iniciar_everificar" />
     <activity
         android:id="@+id/calculadoraTrocoActivity"
-        android:name="com.example.herosorveteria.Activity.CalculadoraTrocoActivity"
+        android:name="com.example.herosorveteria.activity.CalculadoraTrocoActivity"
         android:label="activity_calculadora_troco"
         tools:layout="@layout/activity_calculadora_troco" />
     <activity
