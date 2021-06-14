@@ -6,22 +6,17 @@ import com.example.herosorveteria.helper.DateCustom;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 
-public class Produtos {
+public class MovimentacaoProdutos {
 
-    String nomeProduto;
-    String valorProduto;
-    String valorVenda;
-    String categoriaProduto;
-    String quantidadeProduto;
-    String unidadeProduto;
+    private String nomeProduto;
+    private String valorProduto;
+    private String valorVenda;
+    private String categoriaProduto;
+    private String quantidadeProduto;
+    private String unidadeProduto;
 
-    public Produtos(String nomeProduto, String valorProduto, String valorVenda, String categoriaProduto, String quantidadeProduto, String unidadeProduto) {
-        this.nomeProduto = nomeProduto;
-        this.valorProduto = valorProduto;
-        this.valorVenda = valorVenda;
-        this.categoriaProduto = categoriaProduto;
-        this.quantidadeProduto = quantidadeProduto;
-        this.unidadeProduto = unidadeProduto;
+    public MovimentacaoProdutos() {
+
     }
 
     public void salvar(){

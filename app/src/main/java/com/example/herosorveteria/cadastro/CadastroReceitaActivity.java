@@ -1,4 +1,4 @@
-package com.example.herosorveteria.menu;
+package com.example.herosorveteria.cadastro;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,7 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
-public class ReceitaActivity extends AppCompatActivity {
+public class CadastroReceitaActivity extends AppCompatActivity {
 
     TextInputEditText campoData, campoDescricao, valorPago, valorCompra;
     TextView campoValor;
@@ -187,7 +187,7 @@ public class ReceitaActivity extends AppCompatActivity {
                         return true;
                     }else {
 
-                        Toast.makeText(ReceitaActivity.this,
+                        Toast.makeText(CadastroReceitaActivity.this,
                                 "Preencha o campo Descrição!",
                                 Toast.LENGTH_SHORT).show();
                         return false;
@@ -195,7 +195,7 @@ public class ReceitaActivity extends AppCompatActivity {
 
                 }else {
 
-                    Toast.makeText(ReceitaActivity.this,
+                    Toast.makeText(CadastroReceitaActivity.this,
                             "Preencha o campo Categoria!",
                             Toast.LENGTH_SHORT).show();
                     return false;
@@ -203,7 +203,7 @@ public class ReceitaActivity extends AppCompatActivity {
 
             }else {
 
-                Toast.makeText(ReceitaActivity.this,
+                Toast.makeText(CadastroReceitaActivity.this,
                         "Preencha o campo Data!",
                         Toast.LENGTH_SHORT).show();
                 return false;
@@ -211,7 +211,7 @@ public class ReceitaActivity extends AppCompatActivity {
 
         }else {
 
-            Toast.makeText(ReceitaActivity.this,
+            Toast.makeText(CadastroReceitaActivity.this,
                     "Preencha o campo Valor!",
                     Toast.LENGTH_SHORT).show();
             return false;

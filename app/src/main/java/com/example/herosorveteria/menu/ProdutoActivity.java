@@ -11,7 +11,7 @@ import android.view.View;
 import com.example.herosorveteria.R;
 import com.example.herosorveteria.adapter.AdapterListaProdutos;
 import com.example.herosorveteria.cadastro.CadastroProdutoActivity;
-import com.example.herosorveteria.model.Produtos;
+import com.example.herosorveteria.model.MovimentacaoProdutos;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +19,7 @@ import java.util.List;
 
 public class ProdutoActivity extends AppCompatActivity {
 
-    private List<Produtos> listaProdutos = new ArrayList<>();
+    private List<MovimentacaoProdutos> listaProdutos = new ArrayList<>();
     private AdapterListaProdutos adapterListaProdutos;
     RecyclerView recyclerViewlistaProdutos;
 

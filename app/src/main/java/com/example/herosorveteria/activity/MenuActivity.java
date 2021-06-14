@@ -27,7 +27,7 @@ import com.example.herosorveteria.menu.DespesasActivity;
 import com.example.herosorveteria.menu.HistoricoDeVendasActivity;
 import com.example.herosorveteria.menu.ListadeClientesActivity;
 import com.example.herosorveteria.menu.ProdutoActivity;
-import com.example.herosorveteria.menu.ReceitaActivity;
+import com.example.herosorveteria.cadastro.CadastroReceitaActivity;
 import com.example.herosorveteria.model.MovimentacaoReceitas;
 import com.example.herosorveteria.model.Usuario;
 import com.google.android.material.navigation.NavigationView;
@@ -293,7 +293,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(cp);
                 break;
             case R.id.nav_calculadoraTroco:
-                Intent ct = new Intent(this, ReceitaActivity.class);
+                Intent ct = new Intent(this, CadastroReceitaActivity.class);
                 startActivity(ct);
                 break;
             case R.id.nav_historicoVendas:

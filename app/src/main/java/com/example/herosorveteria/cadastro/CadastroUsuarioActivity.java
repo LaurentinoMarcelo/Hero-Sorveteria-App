@@ -81,6 +81,8 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
 
     }
 
+
+
     public void inicializarComponetes(){
         campoNome = findViewById(R.id.nomeCadastro);
         campoEmail = findViewById(R.id.emailCadastro);

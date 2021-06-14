@@ -11,8 +11,7 @@ import android.widget.TextView;
 
 import com.example.herosorveteria.R;
 import com.example.herosorveteria.menu.ProdutoActivity;
-import com.example.herosorveteria.model.MovimentacaoReceitas;
-import com.example.herosorveteria.model.Produtos;
+import com.example.herosorveteria.model.MovimentacaoProdutos;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -20,35 +19,36 @@ import java.util.List;
 
 public class AdapterListaProdutos extends RecyclerView.Adapter<AdapterListaProdutos.ListaProdutosViewHolder> {
 
-    List<Produtos> listaProdutos;
+    List<MovimentacaoProdutos> listaProdutos;
     Context context;
 
-    public AdapterListaProdutos(List<Produtos> listaProdutos, ProdutoActivity produtoActivity) {
-        this.listaProdutos = listaProdutos;
+    public AdapterListaProdutos(List<MovimentacaoProdutos> lista, Context context) {
+        this.listaProdutos = lista;
         this.context = context;
 
     }
 
-    public ListaProdutosViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
-
-        View itemLista = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.adapter_lista_produtos,parent,false);
-
+    @Override
+    public ListaProdutosViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemLista = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_lista_produtos,parent,false);
         return new ListaProdutosViewHolder(itemLista);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull @NotNull ListaProdutosViewHolder holder, int position) {
-        holder.nomeProduto.setText("Floresta negra");
-        holder.categoriaProduto.setText("Sorvete");
-        holder.quantiadeProduto.setText("2");
-        holder.unidadeProduto.setText("Caixas");
+    public void onBindViewHolder(ListaProdutosViewHolder holder, int position) {
+
+        MovimentacaoProdutos movimentacaoProdutos = listaProdutos.get(position);
+
+        holder.nomeProduto.setText(movimentacaoProdutos.getNomeProduto());
+        holder.categoriaProduto.setText(movimentacaoProdutos.getCategoriaProduto());
+        holder.quantiadeProduto.setText(movimentacaoProdutos.getQuantidadeProduto());
+        holder.unidadeProduto.setText(movimentacaoProdutos.getUnidadeProduto());
     }
 
     @Override
     public int getItemCount() {
 
-        return 5;
+        return listaProdutos.size();
     }
 
     public class ListaProdutosViewHolder extends RecyclerView.ViewHolder{

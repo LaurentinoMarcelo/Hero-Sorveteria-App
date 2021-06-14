@@ -42,6 +42,6 @@
         tools:layout="@layout/activity_receita" />
     <activity
         android:id="@+id/receitaActivity"
-        android:name="com.example.herosorveteria.menu.ReceitaActivity"
+        android:name="com.example.herosorveteria.cadastro.CadastroReceitaActivity"
         android:label="ReceitaActivity" />
 </navigation>

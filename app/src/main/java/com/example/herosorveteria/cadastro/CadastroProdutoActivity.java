@@ -14,21 +14,26 @@ import android.widget.Toast;
 
 import com.example.herosorveteria.activity.MenuActivity;
 import com.example.herosorveteria.R;
-import com.example.herosorveteria.model.Produtos;
+import com.example.herosorveteria.config.ConfiguracaoFireBase;
+import com.example.herosorveteria.menu.ProdutoActivity;
+import com.example.herosorveteria.model.MovimentacaoProdutos;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 
 public class CadastroProdutoActivity extends AppCompatActivity {
 
     TextInputEditText campoNomeProduto, campoValorCompra, campoValorVenda, campoQuantidadeProduto;
-    Spinner spinnerCategoriaProduto, spinnerQuantidadeProduto, spinnerUnidadeProduto;
+    Spinner spinnerCategoriaProduto, spinnerUnidadeProduto;
     TextView valorLucro;
     Button btnCadastrarProduto;
     private String[] categoriaProduto = {"Açaí", "Sorvete", "Picolé", "Insumos Embalagens", "Insumos Escritórios", "Acompanhamento", "Produtos Limpeza"};
-    private String[] unidadeProduto = {"Kilo", "Caixa", "Litros"};
+    private String[] unidadeProduto = {"Kilo", "Caixa", "Litros", "Pacotes"};
     private String categoriaProdutoSelecionado;
-    private String quantidadeProdutoSelecionado;
     private String unidadeProdutoSelecionado;
-    private Produtos produto;
+    private MovimentacaoProdutos produto;
+    private FirebaseAuth autenticacao = ConfiguracaoFireBase.getFireBaseAutenticacao();
+    private DatabaseReference firebaseRef = ConfiguracaoFireBase.getDatabaseReference();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,6 +106,9 @@ public class CadastroProdutoActivity extends AppCompatActivity {
                      case 2:
                          unidadeProdutoSelecionado = "Litros";
                          break;
+                     case 3:
+                     unidadeProdutoSelecionado = "Pacotes";
+                     break;
                  }
             }
 
@@ -126,17 +134,21 @@ public class CadastroProdutoActivity extends AppCompatActivity {
         String valorVenda = campoValorVenda.getText().toString();
         String quantidadeProduto = campoQuantidadeProduto.getText().toString();
 
+
+         produto = new MovimentacaoProdutos();
+         produto.setNomeProduto(nomeProduto);
+         produto.setValorProduto(valorProduto);
+         produto.setCategoriaProduto(categoriaProdutoSelecionado);
+         produto.setQuantidadeProduto(quantidadeProduto);
+         produto.setUnidadeProduto(unidadeProdutoSelecionado);
+         produto.setValorVenda(valorVenda);
+
         validarCampos();
-         produto = new Produtos(nomeProduto,
-                                valorProduto,
-                                valorVenda,
-                                categoriaProdutoSelecionado,
-                                quantidadeProduto,
-                                unidadeProdutoSelecionado);
+        if(validarCampos()==true){
+            produto.salvar();
+            voltarProduto();
+        }
 
-        produto.salvar();
-
-        voltarTelaPrincipal();
 
 
     }
@@ -162,7 +174,7 @@ public class CadastroProdutoActivity extends AppCompatActivity {
 
                 } else {
                     Toast.makeText(CadastroProdutoActivity.this,
-                            "Preencha o valor da venda1",
+                            "Preencha o valor da venda!",
                             Toast.LENGTH_SHORT).show();
                     return false;
                 }
@@ -181,8 +193,8 @@ public class CadastroProdutoActivity extends AppCompatActivity {
 
     }
 
-    public void voltarTelaPrincipal() {
-        Intent i = new Intent(this, MenuActivity.class);
+    public void voltarProduto() {
+        Intent i = new Intent(this, ProdutoActivity.class);
         startActivity(i);
         finish();
     }
