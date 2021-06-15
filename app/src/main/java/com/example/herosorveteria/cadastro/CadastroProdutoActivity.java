@@ -145,7 +145,7 @@ public class CadastroProdutoActivity extends AppCompatActivity {
 
         validarCampos();
         if(validarCampos()==true){
-            produto.salvar();
+            produto.salvar(categoriaProdutoSelecionado);
             voltarProduto();
         }
 

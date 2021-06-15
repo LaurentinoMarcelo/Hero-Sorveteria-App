@@ -9,9 +9,11 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.herosorveteria.R;
-import com.example.herosorveteria.adapter.AdapterListaProdutos;
+import com.example.herosorveteria.adapter.AdapterMovimentacao;
+import com.example.herosorveteria.adapter.AdapterMovimentacaoProdutos;
 import com.example.herosorveteria.cadastro.CadastroProdutoActivity;
 import com.example.herosorveteria.model.MovimentacaoProdutos;
+import com.example.herosorveteria.model.MovimentacaoReceitas;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,9 +21,9 @@ import java.util.List;
 
 public class ProdutoActivity extends AppCompatActivity {
 
-    private List<MovimentacaoProdutos> listaProdutos = new ArrayList<>();
-    private AdapterListaProdutos adapterListaProdutos;
-    RecyclerView recyclerViewlistaProdutos;
+    private RecyclerView recyclerView;
+    private AdapterMovimentacaoProdutos adapterMovimentacaoProdutos;
+    private List<MovimentacaoProdutos> movimentacaoProdutos = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,14 +33,15 @@ public class ProdutoActivity extends AppCompatActivity {
         inicializarComponentes();
 
         //Configurar adpter
-        adapterListaProdutos = new AdapterListaProdutos(listaProdutos, this);
+        AdapterMovimentacaoProdutos adapter = new AdapterMovimentacaoProdutos(movimentacaoProdutos,this);
 
 
         //Configurar RecicleView
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerViewlistaProdutos.setLayoutManager(layoutManager);
-        recyclerViewlistaProdutos.setHasFixedSize(true);
-        recyclerViewlistaProdutos.setAdapter(adapterListaProdutos);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(adapter);
+
 
     }
 
@@ -49,7 +52,7 @@ public class ProdutoActivity extends AppCompatActivity {
     }
 
     public void inicializarComponentes(){
-        recyclerViewlistaProdutos = findViewById(R.id.recyclerViewListProdutos);
+        recyclerView = findViewById(R.id.recyclerViewListProdutos);
 
     }
 }

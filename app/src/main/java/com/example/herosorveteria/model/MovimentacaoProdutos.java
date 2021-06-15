@@ -19,7 +19,7 @@ public class MovimentacaoProdutos {
 
     }
 
-    public void salvar(){
+    public void salvar(String categoriaProduto){
         FirebaseAuth autenticacao = ConfiguracaoFireBase.getFireBaseAutenticacao();
         String idUsuario = Base64Custom.codificarBase64(autenticacao.getCurrentUser().getEmail());
 
