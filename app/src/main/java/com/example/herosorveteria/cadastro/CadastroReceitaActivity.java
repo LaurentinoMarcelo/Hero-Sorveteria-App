@@ -36,7 +36,7 @@ public class CadastroReceitaActivity extends AppCompatActivity {
     Spinner spinnerCategoria, spinnerFormaPagamento;
     Button btnCalucarTroco, btnRegistrarVenda;
     private MovimentacaoReceitas movimentacaoReceitas;
-    private DatabaseReference firebaseRef = ConfiguracaoFireBase.getDatabaseReference();
+    private DatabaseReference firebaseRef = ConfiguracaoFireBase.getFirebaseDatabase();
     private FirebaseAuth autenticacao = ConfiguracaoFireBase.getFireBaseAutenticacao();
     private Double receitaTotal;
     private Double receitaGerada;
@@ -52,7 +52,7 @@ public class CadastroReceitaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_receita);
+        setContentView(R.layout.activity_cadastro_receita);
 
         inicializarComponentes();
 

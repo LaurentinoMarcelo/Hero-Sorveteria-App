@@ -35,17 +35,19 @@ public class AdapterMovimentacao extends RecyclerView.Adapter<AdapterMovimentaca
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
         MovimentacaoReceitas movimentacaoReceitas = movimentacoes.get(position);
-
         double valor = movimentacaoReceitas.getValor();
         String valorFormatado = String.format("R$ %.2f", valor);
 
-        holder.titulo.setText(movimentacaoReceitas.getCategoria());
+        holder.titulo.setText(movimentacaoReceitas.getDescricao());
         holder.valor.setText(valorFormatado);
-        holder.formaPagamento.setText(movimentacaoReceitas.getFormaPagamento());
+        holder.formaPagamento.setText(movimentacaoReceitas.getCategoria());
 
         if (movimentacaoReceitas.getTipo().equals("d")) {
             holder.valor.setTextColor(context.getResources().getColor(R.color.red));
-            holder.valor.setText("-" + movimentacaoReceitas.getValor());
+            double valorDespesa = movimentacaoReceitas.getValor();
+            String valorDespesaFormatado = String.format("R$ %.2f", valorDespesa);
+
+            holder.valor.setText("-" + valorDespesaFormatado);
         }
     }
 

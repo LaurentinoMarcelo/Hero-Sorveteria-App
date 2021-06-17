@@ -1,5 +1,6 @@
 package com.example.herosorveteria.menu;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,11 +10,16 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.herosorveteria.R;
-import com.example.herosorveteria.adapter.AdapterMovimentacao;
-import com.example.herosorveteria.adapter.AdapterMovimentacaoProdutos;
 import com.example.herosorveteria.cadastro.CadastroProdutoActivity;
-import com.example.herosorveteria.model.MovimentacaoProdutos;
-import com.example.herosorveteria.model.MovimentacaoReceitas;
+import com.example.herosorveteria.config.ConfiguracaoFireBase;
+import com.example.herosorveteria.helper.Base64Custom;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,9 +27,9 @@ import java.util.List;
 
 public class ProdutoActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    private AdapterMovimentacaoProdutos adapterMovimentacaoProdutos;
-    private List<MovimentacaoProdutos> movimentacaoProdutos = new ArrayList<>();
+    private ValueEventListener valueEventListener;
+    private FirebaseAuth autenticacao = ConfiguracaoFireBase.getFireBaseAutenticacao();
+    private DatabaseReference movimentacaoRef = ConfiguracaoFireBase.getFirebaseDatabase();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,18 +38,10 @@ public class ProdutoActivity extends AppCompatActivity {
 
         inicializarComponentes();
 
-        //Configurar adpter
-        AdapterMovimentacaoProdutos adapter = new AdapterMovimentacaoProdutos(movimentacaoProdutos,this);
-
-
-        //Configurar RecicleView
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(adapter);
 
 
     }
+
 
     public void cadastrarProduto(View v){
         Intent i = new Intent(this, CadastroProdutoActivity.class);
@@ -52,7 +50,9 @@ public class ProdutoActivity extends AppCompatActivity {
     }
 
     public void inicializarComponentes(){
-        recyclerView = findViewById(R.id.recyclerViewListProdutos);
+
 
     }
+
+
 }

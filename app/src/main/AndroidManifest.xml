@@ -16,7 +16,7 @@
         <activity android:name=".menu.ProdutoActivity" />
         <activity android:name=".cadastro.CadastroReceitaActivity" />
         <activity android:name=".activity.LoginActivity" />
-        <activity android:name=".menu.DespesasActivity" />
+        <activity android:name=".cadastro.CadastroDespesasActivity" />
         <activity android:name=".cadastro.CadastroUsuarioActivity" />
         <activity android:name=".menu.HistoricoDeVendasActivity" />
         <activity android:name=".activity.MenuActivity" />

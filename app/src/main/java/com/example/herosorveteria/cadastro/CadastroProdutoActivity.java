@@ -12,11 +12,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.herosorveteria.activity.MenuActivity;
 import com.example.herosorveteria.R;
 import com.example.herosorveteria.config.ConfiguracaoFireBase;
 import com.example.herosorveteria.menu.ProdutoActivity;
-import com.example.herosorveteria.model.MovimentacaoProdutos;
+import com.example.herosorveteria.model.Produto;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
@@ -31,9 +30,9 @@ public class CadastroProdutoActivity extends AppCompatActivity {
     private String[] unidadeProduto = {"Kilo", "Caixa", "Litros", "Pacotes"};
     private String categoriaProdutoSelecionado;
     private String unidadeProdutoSelecionado;
-    private MovimentacaoProdutos produto;
+    private Produto produto;
     private FirebaseAuth autenticacao = ConfiguracaoFireBase.getFireBaseAutenticacao();
-    private DatabaseReference firebaseRef = ConfiguracaoFireBase.getDatabaseReference();
+    private DatabaseReference firebaseRef = ConfiguracaoFireBase.getFirebaseDatabase();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,17 +134,17 @@ public class CadastroProdutoActivity extends AppCompatActivity {
         String quantidadeProduto = campoQuantidadeProduto.getText().toString();
 
 
-         produto = new MovimentacaoProdutos();
-         produto.setNomeProduto(nomeProduto);
-         produto.setValorProduto(valorProduto);
-         produto.setCategoriaProduto(categoriaProdutoSelecionado);
-         produto.setQuantidadeProduto(quantidadeProduto);
-         produto.setUnidadeProduto(unidadeProdutoSelecionado);
+         produto = new Produto();
+         produto.setNome(nomeProduto);
+         produto.setValorCompra(valorProduto);
+         produto.setCategoria(categoriaProdutoSelecionado);
+         produto.setQuantiade(quantidadeProduto);
+         produto.setUnidade(unidadeProdutoSelecionado);
          produto.setValorVenda(valorVenda);
 
         validarCampos();
         if(validarCampos()==true){
-            produto.salvar(categoriaProdutoSelecionado);
+            produto.salvar();
             voltarProduto();
         }
 

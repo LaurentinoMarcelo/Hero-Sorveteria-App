@@ -23,7 +23,7 @@ import com.example.herosorveteria.R;
 import com.example.herosorveteria.adapter.AdapterMovimentacao;
 import com.example.herosorveteria.config.ConfiguracaoFireBase;
 import com.example.herosorveteria.helper.Base64Custom;
-import com.example.herosorveteria.menu.DespesasActivity;
+import com.example.herosorveteria.cadastro.CadastroDespesasActivity;
 import com.example.herosorveteria.menu.HistoricoDeVendasActivity;
 import com.example.herosorveteria.menu.ListadeClientesActivity;
 import com.example.herosorveteria.menu.ProdutoActivity;
@@ -61,7 +61,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     private NavigationView navigationView;
     private Toolbar toolbar;
     private FirebaseAuth autenticacao = ConfiguracaoFireBase.getFireBaseAutenticacao();
-    private DatabaseReference firebaseRef = ConfiguracaoFireBase.getDatabaseReference();
+    private DatabaseReference firebaseRef = ConfiguracaoFireBase.getFirebaseDatabase();
     private DatabaseReference usuarioRef;
     private ValueEventListener valueEventListenerUsuario;
     private ValueEventListener valueEventListenerMovimentacao;
@@ -301,7 +301,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(hv);
                 break;
             case R.id.nav_contasPagar:
-                Intent dP = new Intent(this, DespesasActivity.class);
+                Intent dP = new Intent(this, CadastroDespesasActivity.class);
                 startActivity(dP);
                 break;
             case R.id.nav_listaClientes:

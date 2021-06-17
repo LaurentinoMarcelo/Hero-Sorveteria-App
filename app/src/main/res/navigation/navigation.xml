@@ -37,9 +37,9 @@
         tools:layout="@layout/activity_calculadora_troco" />
     <activity
         android:id="@+id/despesasActivity"
-        android:name="com.example.herosorveteria.menu.DespesasActivity"
+        android:name="com.example.herosorveteria.cadastro.CadastroDespesasActivity"
         android:label="activity_receita"
-        tools:layout="@layout/activity_receita" />
+        tools:layout="@layout/activity_cadastro_receita" />
     <activity
         android:id="@+id/receitaActivity"
         android:name="com.example.herosorveteria.cadastro.CadastroReceitaActivity"

@@ -6,7 +6,7 @@ import com.example.herosorveteria.helper.DateCustom;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 
-public class MovimentacaoReceitas {
+public class MovimentacaoDespesas {
 
     private String data;
     private String categoria;
@@ -16,7 +16,9 @@ public class MovimentacaoReceitas {
     private Double valor;
     private String key;
 
-    public MovimentacaoReceitas() {
+
+    public MovimentacaoDespesas() {
+
 
     }
 
@@ -33,22 +35,6 @@ public class MovimentacaoReceitas {
                 .push()
                 .setValue(this);
 
-    }
-
-    public String getKey() {
-        return key;
-    }
-
-    public void setKey(String key) {
-        this.key = key;
-    }
-
-    public String getFormaPagamento() {
-        return formaPagamento;
-    }
-
-    public void setFormaPagamento(String formaPagamento) {
-        this.formaPagamento = formaPagamento;
     }
 
     public String getData() {
@@ -75,6 +61,14 @@ public class MovimentacaoReceitas {
         this.descricao = descricao;
     }
 
+    public String getFormaPagamento() {
+        return formaPagamento;
+    }
+
+    public void setFormaPagamento(String formaPagamento) {
+        this.formaPagamento = formaPagamento;
+    }
+
     public String getTipo() {
         return tipo;
     }
@@ -91,5 +85,11 @@ public class MovimentacaoReceitas {
         this.valor = valor;
     }
 
+    public String getKey() {
+        return key;
+    }
 
+    public void setKey(String key) {
+        this.key = key;
+    }
 }
