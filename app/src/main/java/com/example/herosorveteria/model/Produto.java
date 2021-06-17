@@ -14,6 +14,7 @@ public class Produto {
     String quantiade;
     String unidade;
     String valorVenda;
+    String Key;
 
     public void salvar(){
         FirebaseAuth autenticacao = ConfiguracaoFireBase.getFireBaseAutenticacao();
@@ -26,7 +27,13 @@ public class Produto {
                 .setValue(this);
     }
 
+    public String getKey() {
+        return Key;
+    }
 
+    public void setKey(String key) {
+        Key = key;
+    }
 
     public String getNome() {
         return nome;

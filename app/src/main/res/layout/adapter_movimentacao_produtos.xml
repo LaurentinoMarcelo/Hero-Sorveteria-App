@@ -1,80 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:elevation="3dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-
-            <TextView
-                android:id="@+id/textAdapterListProdutoNome"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Nome Produto"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/textAdapterListQuantidadeProduto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="right"
-                android:text="0"
-                android:textColor="#5C00FF"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/textAdapterListUnidadeProduto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="Unidade" />
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/textAdapterListCategoriaProduto"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Categoria"
-            android:textSize="16sp"
-            android:textStyle="bold" />
+            android:layout_margin="16dp"
+            android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/textAdapterListValorPagoProduto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Valor pago" />
+                    <TextView
+                        android:id="@+id/textAdapterNomeProdutoListaProduto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="5"
+                        android:text="Titulo"
+                        android:textColor="@android:color/black"
+                        android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/textAdapterListValorVendaProduto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Valor venda" />
+                    <TextView
+                        android:id="@+id/textAdapterValorProdutoListaProduto"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="end"
+                        android:text="R$00,00"
+                        android:textColor="#00D39E"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+
+                </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/textAdapterCategoriaProdutoListaProduto"
+                    android:layout_width="250dp"
+                    android:layout_height="match_parent"
+                    android:text="Categoria" />
+
+                <TextView
+                    android:id="@+id/textAdapterQuantidadeProdutoListaProduto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Quantidade" />
+
+                <TextView
+                    android:id="@+id/textAdapterUnidadeProdutoListaProduto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Unidade" />
+
+            </LinearLayout>
+
         </LinearLayout>
-
     </LinearLayout>
+
+
 </androidx.cardview.widget.CardView>

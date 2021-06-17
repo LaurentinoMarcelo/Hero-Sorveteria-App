@@ -123,16 +123,6 @@
                 android:inputType="numberDecimal" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/textLucro"
-            android:layout_width="300dp"
-            android:layout_height="70dp"
-            android:layout_margin="5dp"
-            android:gravity="center"
-            android:text="R$ 00,00"
-            android:textSize="24sp"
-            android:textStyle="bold" />
-
         <Button
             android:id="@+id/btnCadastroProduto"
             android:layout_width="300dp"

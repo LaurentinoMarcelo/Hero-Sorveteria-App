@@ -25,6 +25,7 @@ import com.example.herosorveteria.config.ConfiguracaoFireBase;
 import com.example.herosorveteria.helper.Base64Custom;
 import com.example.herosorveteria.cadastro.CadastroDespesasActivity;
 import com.example.herosorveteria.menu.HistoricoDeVendasActivity;
+import com.example.herosorveteria.menu.ListaFornecedor;
 import com.example.herosorveteria.menu.ListadeClientesActivity;
 import com.example.herosorveteria.menu.ProdutoActivity;
 import com.example.herosorveteria.cadastro.CadastroReceitaActivity;
@@ -307,6 +308,10 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_listaClientes:
                 Intent lC = new Intent(this, ListadeClientesActivity.class);
                 startActivity(lC);
+                break;
+            case R.id.nav_listaFornecedor:
+                Intent lF = new Intent(this, ListaFornecedor.class);
+                startActivity(lF);
                 break;
 
             case R.id.nav_sair:

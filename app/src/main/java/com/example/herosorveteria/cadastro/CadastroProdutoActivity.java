@@ -24,7 +24,6 @@ public class CadastroProdutoActivity extends AppCompatActivity {
 
     TextInputEditText campoNomeProduto, campoValorCompra, campoValorVenda, campoQuantidadeProduto;
     Spinner spinnerCategoriaProduto, spinnerUnidadeProduto;
-    TextView valorLucro;
     Button btnCadastrarProduto;
     private String[] categoriaProduto = {"Açaí", "Sorvete", "Picolé", "Insumos Embalagens", "Insumos Escritórios", "Acompanhamento", "Produtos Limpeza"};
     private String[] unidadeProduto = {"Kilo", "Caixa", "Litros", "Pacotes"};
@@ -53,7 +52,6 @@ public class CadastroProdutoActivity extends AppCompatActivity {
         campoQuantidadeProduto = findViewById(R.id.quantiadeProduto);
         spinnerCategoriaProduto = findViewById(R.id.spinnerCategoriaProduto);
         spinnerUnidadeProduto = findViewById(R.id.spinnerUnidadeProduto);
-        valorLucro = findViewById(R.id.textLucro);
         btnCadastrarProduto = findViewById(R.id.btnCadastrarProduto);
     }
 
