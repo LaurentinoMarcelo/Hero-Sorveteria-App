@@ -10,10 +10,12 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.herosorveteria.R;
+import com.example.herosorveteria.adapter.AdapterFornecedores;
 import com.example.herosorveteria.adapter.AdapterProduto;
-import com.example.herosorveteria.cadastro.CadastroProdutoActivity;
+import com.example.herosorveteria.cadastro.CadastroFornecedorActivity;
 import com.example.herosorveteria.config.ConfiguracaoFireBase;
 import com.example.herosorveteria.helper.Base64Custom;
+import com.example.herosorveteria.model.Fornecedor;
 import com.example.herosorveteria.model.Produto;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -26,49 +28,59 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class ProdutoActivity extends AppCompatActivity {
+public class ListaFornecedorActivity extends AppCompatActivity {
     private DatabaseReference firebaseRef = ConfiguracaoFireBase.getFirebaseDatabase();
-    RecyclerView recyclerViewProdutos;
+    RecyclerView recyclerViewFornecedor;
     private ValueEventListener valueEventListener;
     private FirebaseAuth autenticacao = ConfiguracaoFireBase.getFireBaseAutenticacao();
-    private DatabaseReference produtoRef = ConfiguracaoFireBase.getFirebaseDatabase();
-    private AdapterProduto adapterProduto;
-    private List<Produto> produtoList = new ArrayList<>();
+    private DatabaseReference fornecedorRef = ConfiguracaoFireBase.getFirebaseDatabase();
+    private AdapterFornecedores adapterFornecedores;
+    private List<Fornecedor> fornecedorList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lista_produto);
+        setContentView(R.layout.activity_lista_fornecedor);
 
         inicializarComponentes();
 
-        adapterProduto = new AdapterProduto(produtoList,this);
+        adapterFornecedores = new AdapterFornecedores(fornecedorList,this);
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerViewProdutos.setLayoutManager(layoutManager);
-        recyclerViewProdutos.setHasFixedSize(true);
-        recyclerViewProdutos.setAdapter(adapterProduto);
+        recyclerViewFornecedor.setLayoutManager(layoutManager);
+        recyclerViewFornecedor.setHasFixedSize(true);
+        recyclerViewFornecedor.setAdapter(adapterFornecedores);
+    }
+
+    private void inicializarComponentes() {
+        recyclerViewFornecedor = findViewById(R.id.recyclerListFornecedor);
+    }
+
+    public void cadastraFornecedor(View v){
+
+        Intent i = new Intent(this, CadastroFornecedorActivity.class);
+        startActivity(i);
+        finish();
 
     }
 
-    public void recuperarProdutos(){
+    private void recuperarFornecedores() {
+
         String emialUsuario = autenticacao.getCurrentUser().getEmail();
         String idUsuario = Base64Custom.codificarBase64(emialUsuario);
-        produtoRef = firebaseRef.child("produtos")
+        fornecedorRef = firebaseRef.child("fornecedores")
                 .child(idUsuario);
-
-        valueEventListener = produtoRef.addValueEventListener(new ValueEventListener() {
+        valueEventListener = fornecedorRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                produtoList.clear();
+                fornecedorList.clear();
 
-                for(DataSnapshot dados: snapshot.getChildren()){
-                    Produto produto = dados.getValue(Produto.class);
-                    produto.setKey(dados.getKey());
-                    produtoList.add(produto);
+                for (DataSnapshot dados: snapshot.getChildren()){
+                    Fornecedor fornecedor = dados.getValue(Fornecedor.class);
+                    fornecedor.setKey(dados.getKey());
+                    fornecedorList.add(fornecedor);
                 }
-                adapterProduto.notifyDataSetChanged();
+                adapterFornecedores.notifyDataSetChanged();
             }
 
             @Override
@@ -77,24 +89,11 @@ public class ProdutoActivity extends AppCompatActivity {
             }
         });
 
-
     }
-
-    public void cadastrarProduto(View v){
-        Intent i = new Intent(this, CadastroProdutoActivity.class);
-        startActivity(i);
-        finish();
-    }
-
-    public void inicializarComponentes(){
-
-        recyclerViewProdutos = findViewById(R.id.recyclerListaProdutos);
-    }
-
     @Override
     protected void onStart() {
         super.onStart();
-        recuperarProdutos();
+        recuperarFornecedores();
     }
 
 

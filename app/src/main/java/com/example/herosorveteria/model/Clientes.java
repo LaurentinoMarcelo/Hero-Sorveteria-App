@@ -5,24 +5,36 @@ import com.example.herosorveteria.helper.Base64Custom;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 
-public class Fornecedor {
+public class Clientes {
 
     private String nome;
     private String telefone;
-    private String endereço;
-    private String produtoFornecido;
+    private String redeSocial;
     private String Key;
 
     public void salvar(){
         FirebaseAuth autenticacao = ConfiguracaoFireBase.getFireBaseAutenticacao();
         String idUsuario = Base64Custom.codificarBase64(autenticacao.getCurrentUser().getEmail());
-
         DatabaseReference fireBase = ConfiguracaoFireBase.getFirebaseDatabase();
-        fireBase.child("fornecedores")
+        fireBase.child("clientes")
                 .child(idUsuario)
                 .push()
                 .setValue(this);
+    }
 
+    public Clientes(String nome, String telefone, String redeSocial, String key) {
+        this.nome = nome;
+        this.telefone = telefone;
+        this.redeSocial = redeSocial;
+        Key = key;
+    }
+
+    public String getRedeSocial() {
+        return redeSocial;
+    }
+
+    public void setRedeSocial(String redeSocial) {
+        this.redeSocial = redeSocial;
     }
 
     public String getKey() {
@@ -48,20 +60,5 @@ public class Fornecedor {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-
-    public String getEndereço() {
-        return endereço;
-    }
-
-    public void setEndereço(String endereço) {
-        this.endereço = endereço;
-    }
-
-    public String getProdutoFornecido() {
-        return produtoFornecido;
-    }
-
-    public void setProdutoFornecido(String produtoFornecido) {
-        this.produtoFornecido = produtoFornecido;
-    }
 }
+

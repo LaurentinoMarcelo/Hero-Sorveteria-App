@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.herosorveteria.R;
-import com.example.herosorveteria.menu.ListaFornecedor;
+import com.example.herosorveteria.menu.ListaFornecedorActivity;
 import com.example.herosorveteria.model.Fornecedor;
 import com.google.android.material.textfield.TextInputEditText;
 
@@ -47,7 +47,7 @@ public class CadastroFornecedorActivity extends AppCompatActivity {
 
     private void voltarListaFornecedor() {
 
-        Intent i = new Intent(this, ListaFornecedor.class);
+        Intent i = new Intent(this, ListaFornecedorActivity.class);
         startActivity(i);
         finish();
 

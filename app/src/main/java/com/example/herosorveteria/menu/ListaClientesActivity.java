@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import com.example.herosorveteria.R;
 
-public class ListadeClientesActivity extends AppCompatActivity {
+public class ListaClientesActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_listade_clientes);
+        setContentView(R.layout.activity_lista_clientes);
     }
 }

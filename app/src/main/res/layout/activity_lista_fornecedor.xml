@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".menu.ListaFornecedor">
+    tools:context=".menu.ListaFornecedorActivity">
 
     <LinearLayout
         android:layout_width="350dp"

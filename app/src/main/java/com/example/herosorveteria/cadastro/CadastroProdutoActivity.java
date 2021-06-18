@@ -9,12 +9,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.herosorveteria.R;
 import com.example.herosorveteria.config.ConfiguracaoFireBase;
-import com.example.herosorveteria.menu.ProdutoActivity;
+import com.example.herosorveteria.menu.ListaProdutoActivity;
 import com.example.herosorveteria.model.Produto;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
@@ -191,7 +190,7 @@ public class CadastroProdutoActivity extends AppCompatActivity {
     }
 
     public void voltarProduto() {
-        Intent i = new Intent(this, ProdutoActivity.class);
+        Intent i = new Intent(this, ListaProdutoActivity.class);
         startActivity(i);
         finish();
     }

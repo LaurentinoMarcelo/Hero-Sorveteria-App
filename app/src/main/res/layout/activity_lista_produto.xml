@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".menu.ProdutoActivity">
+    tools:context=".menu.ListaProdutoActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerListaProdutos"

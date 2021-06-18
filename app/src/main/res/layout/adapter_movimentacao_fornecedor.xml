@@ -21,24 +21,31 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textAdapterNomeForncedor"
-                    android:layout_width="300dp"
+                    android:id="@+id/textAdapterNomeFornecedor"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nome"
-                    android:textColor="@android:color/black"
-                    android:textSize="16sp" />
+                    android:layout_weight="1"
+                    android:text="Nome" />
 
                 <TextView
-                    android:id="@+id/textAdapterTelefone"
-                    android:layout_width="300dp"
+                    android:id="@+id/textAdapterTelefoneFornecedor"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="end"
-                    android:text="Telefone"
-                    android:textColor="#00D39E"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
+                    android:layout_weight="1"
+                    android:text="Telefone" />
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/textAdapterEnderecoFornecedor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Endereço" />
+
+            <TextView
+                android:id="@+id/textAdapterProdutosFornecedor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Produtos" />
 
         </LinearLayout>
 

@@ -25,9 +25,8 @@ import com.example.herosorveteria.config.ConfiguracaoFireBase;
 import com.example.herosorveteria.helper.Base64Custom;
 import com.example.herosorveteria.cadastro.CadastroDespesasActivity;
 import com.example.herosorveteria.menu.HistoricoDeVendasActivity;
-import com.example.herosorveteria.menu.ListaFornecedor;
-import com.example.herosorveteria.menu.ListadeClientesActivity;
-import com.example.herosorveteria.menu.ProdutoActivity;
+import com.example.herosorveteria.menu.ListaFornecedorActivity;
+import com.example.herosorveteria.menu.ListaProdutoActivity;
 import com.example.herosorveteria.cadastro.CadastroReceitaActivity;
 import com.example.herosorveteria.model.MovimentacaoReceitas;
 import com.example.herosorveteria.model.Usuario;
@@ -290,7 +289,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.nav_EstoqueProduto:
-                Intent cp = new Intent(this, ProdutoActivity.class);
+                Intent cp = new Intent(this, ListaProdutoActivity.class);
                 startActivity(cp);
                 break;
             case R.id.nav_calculadoraTroco:
@@ -310,7 +309,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(lC);
                 break;
             case R.id.nav_listaFornecedor:
-                Intent lF = new Intent(this, ListaFornecedor.class);
+                Intent lF = new Intent(this, ListaFornecedorActivity.class);
                 startActivity(lF);
                 break;
 
