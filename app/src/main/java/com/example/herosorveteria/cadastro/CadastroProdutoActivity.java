@@ -51,7 +51,7 @@ public class CadastroProdutoActivity extends AppCompatActivity {
         campoQuantidadeProduto = findViewById(R.id.quantiadeProduto);
         spinnerCategoriaProduto = findViewById(R.id.spinnerCategoriaProduto);
         spinnerUnidadeProduto = findViewById(R.id.spinnerUnidadeProduto);
-        btnCadastrarProduto = findViewById(R.id.btnCadastrarProduto);
+
     }
 
     private void selicionarSpinner() {
@@ -125,6 +125,8 @@ public class CadastroProdutoActivity extends AppCompatActivity {
     }
 
     public void salvarProduto(View v) {
+        validarCampos();
+        if(validarCampos()==true){
         String nomeProduto = campoNomeProduto.getText().toString();
         String valorProduto = campoValorCompra.getText().toString();
         String valorVenda = campoValorVenda.getText().toString();
@@ -139,10 +141,12 @@ public class CadastroProdutoActivity extends AppCompatActivity {
          produto.setUnidade(unidadeProdutoSelecionado);
          produto.setValorVenda(valorVenda);
 
-        validarCampos();
-        if(validarCampos()==true){
+
             produto.salvar();
-            voltarProduto();
+            Intent i = new Intent(this, ListaProdutoActivity.class);
+            startActivity(i);
+            finish();
+
         }
 
 
@@ -189,10 +193,6 @@ public class CadastroProdutoActivity extends AppCompatActivity {
 
     }
 
-    public void voltarProduto() {
-        Intent i = new Intent(this, ListaProdutoActivity.class);
-        startActivity(i);
-        finish();
-    }
+
 }
 

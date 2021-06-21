@@ -25,17 +25,17 @@ import com.example.herosorveteria.config.ConfiguracaoFireBase;
 import com.example.herosorveteria.helper.Base64Custom;
 import com.example.herosorveteria.cadastro.CadastroDespesasActivity;
 import com.example.herosorveteria.menu.HistoricoDeVendasActivity;
+import com.example.herosorveteria.menu.ListaClientesActivity;
 import com.example.herosorveteria.menu.ListaFornecedorActivity;
 import com.example.herosorveteria.menu.ListaProdutoActivity;
 import com.example.herosorveteria.cadastro.CadastroReceitaActivity;
-import com.example.herosorveteria.model.MovimentacaoReceitas;
+import com.example.herosorveteria.model.Movimentacao;
 import com.example.herosorveteria.model.Usuario;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
@@ -51,27 +51,28 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
     private MaterialCalendarView calendarView;
     private TextView textoSaudacao, textoSaldo;
-    private Double despesaTotal = 0.00;
+    private Double despesaTotal = 0.0;
     private Double receitaTotal = 0.0;
-    private Double resumoUsuario = 0.0;
+    private Double resumoUsuario;
 
-    private DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
 
-    private DrawerLayout drawerLayout;
-    private NavigationView navigationView;
-    private Toolbar toolbar;
     private FirebaseAuth autenticacao = ConfiguracaoFireBase.getFireBaseAutenticacao();
     private DatabaseReference firebaseRef = ConfiguracaoFireBase.getFirebaseDatabase();
     private DatabaseReference usuarioRef;
     private ValueEventListener valueEventListenerUsuario;
     private ValueEventListener valueEventListenerMovimentacao;
 
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
+    private Toolbar toolbar;
+
     private RecyclerView recyclerView;
     private AdapterMovimentacao adapterMovimentacao;
-    private List<MovimentacaoReceitas> movimentacoes = new ArrayList<>();
+    private List<Movimentacao> movimentacoes = new ArrayList<>();
+    private Movimentacao movimentacao;
     private DatabaseReference movimentacaoRef;
     private String mesAnoSelecionado;
-    private MovimentacaoReceitas movimentacaoReceitas;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,7 +80,11 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_menu);
 
         inicializarComponetes();
+        recuperarResumo();
+        configuraCalendarView();
         swipe();
+
+
 
         adapterMovimentacao = new AdapterMovimentacao(movimentacoes, this);
 
@@ -142,7 +147,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
              @Override
              public void onClick(DialogInterface dialogInterface, int i) {
                 int position = viewHolder.getAdapterPosition();
-                movimentacaoReceitas = movimentacoes.get(position);
+                movimentacao = movimentacoes.get(position);
 
                  String emialUsuario = autenticacao.getCurrentUser().getEmail();
                  String idUsuario = Base64Custom.codificarBase64(emialUsuario);
@@ -150,7 +155,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
                          .child(idUsuario)
                          .child( mesAnoSelecionado );
 
-                 movimentacaoRef.child(movimentacaoReceitas.getKey()).removeValue();
+                 movimentacaoRef.child(movimentacao.getKey()).removeValue();
                  adapterMovimentacao.notifyItemRemoved(position);
                  atualizarSaldo();
              }
@@ -174,8 +179,8 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         String idUsuario = Base64Custom.codificarBase64(emialUsuario);
         usuarioRef = firebaseRef.child("usuarios").child(idUsuario);
 
-        if( movimentacaoReceitas.getTipo().equals("r")){
-            receitaTotal = receitaTotal - movimentacaoReceitas.getValor();
+        if( movimentacao.getTipo().equals("r")){
+            receitaTotal = receitaTotal - movimentacao.getValor();
             usuarioRef.child("receita").setValue(receitaTotal);
         }
 
@@ -195,7 +200,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
                 movimentacoes.clear();
 
                 for(DataSnapshot dados: snapshot.getChildren()){
-                    MovimentacaoReceitas movimentaco = dados.getValue(MovimentacaoReceitas.class);
+                    Movimentacao movimentaco = dados.getValue(Movimentacao.class);
                     movimentaco.setKey(dados.getKey());
                     movimentacoes.add(movimentaco);
                 }
@@ -211,20 +216,24 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
+
     private void recuperarResumo() {
 
         String emialUsuario = autenticacao.getCurrentUser().getEmail();
         String idUsuario = Base64Custom.codificarBase64(emialUsuario);
-        usuarioRef = firebaseRef.child("usuarios").child(idUsuario);
+        usuarioRef = firebaseRef.child("usuarios")
+                    .child(idUsuario);
 
         valueEventListenerUsuario = usuarioRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+            public void onDataChange(@NonNull @NotNull DataSnapshot dataSnapshot) {
 
-                Usuario usuario = snapshot.getValue(Usuario.class);
-                despesaTotal = usuario.getDespesas();
-                receitaTotal = usuario.getReceita();
-                resumoUsuario = receitaTotal - despesaTotal;
+                    Usuario usuario = dataSnapshot.getValue(Usuario.class);
+
+                    despesaTotal = usuario.getDespesaTotal();
+                    receitaTotal = usuario.getReceitaTotal();
+                    resumoUsuario = receitaTotal - despesaTotal;
+
 
                 DecimalFormat decimalFormat = new DecimalFormat("0.00");
                 String resultadoFormatado = decimalFormat.format(resumoUsuario);
@@ -239,8 +248,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
             }
         });
-    }
-
+        }
     private void inicializarComponetes() {
 
         drawerLayout = findViewById(R.id.drawerLayout);
@@ -248,7 +256,6 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         toolbar = findViewById(R.id.toolbar);
 
         calendarView = findViewById(R.id.calendarView);
-        configuraCalendarView();
 
         textoSaldo = findViewById(R.id.textSaldo);
         textoSaudacao = findViewById(R.id.textSaudacao);
@@ -305,7 +312,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(dP);
                 break;
             case R.id.nav_listaClientes:
-                Intent lC = new Intent(this, ListadeClientesActivity.class);
+                Intent lC = new Intent(this, ListaClientesActivity.class);
                 startActivity(lC);
                 break;
             case R.id.nav_listaFornecedor:

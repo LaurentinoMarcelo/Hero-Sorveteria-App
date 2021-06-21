@@ -4,15 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backgroundtelas"
     tools:context=".cadastro.CadastroDespesasActivity">
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="315dp"
+        android:layout_height="400dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="1dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
+        android:background="@drawable/campo_texto"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,57 +22,46 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="300dp"
+            android:layout_height="70dp"
+            android:layout_margin="5dp">
 
-
-            <com.google.android.material.textfield.TextInputLayout
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editaDataDespesa"
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_margin="5dp">
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:gravity="center"
+                android:inputType="date"
+                android:textColorHint="#000000"
+                android:textSize="18sp" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editaDataDespesa"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:gravity="center"
-                    android:inputType="date"
-                    android:textColorHint="#000000"
-                    android:textSize="18sp" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="300dp"
-                android:layout_height="70dp"
-                android:layout_margin="5dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editValorDespesa"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="5dp"
-                    android:hint="Valor da despesa"
-                    android:inputType="numberDecimal"
-                    android:textColor="#A80CCB"
-                    android:textColorHighlight="#A80CCB"
-                    android:textColorHint="#A80CCB"
-                    android:textColorLink="#A80CCB" />
-            </com.google.android.material.textfield.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-        </LinearLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="300dp"
+            android:layout_height="70dp"
+            android:layout_margin="5dp">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/editValorDespesa"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="5dp"
+                android:hint="Valor da despesa"
+                android:inputType="numberDecimal"
+                android:textColor="#A80CCB"
+                android:textColorHighlight="#A80CCB"
+                android:textColorHint="#A80CCB"
+                android:textColorLink="#A80CCB" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <LinearLayout
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_margin="5dp"
-            android:layout_weight="1"
             android:orientation="horizontal">
 
             <Spinner
@@ -87,9 +78,8 @@
                 android:textColor="#A80CCB"
                 android:textColorHighlight="#A80CCB"
                 android:textColorHint="#A80CCB"
-                android:textColorLink="#A80CCB"/>
+                android:textColorLink="#A80CCB" />
         </LinearLayout>
-
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -109,8 +99,8 @@
 
         <LinearLayout
             android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_margin="5dp"
+            android:layout_height="60dp"
+            android:layout_margin="3dp"
             android:orientation="horizontal">
 
             <Button

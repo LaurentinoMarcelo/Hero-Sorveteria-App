@@ -12,6 +12,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/campo_texto_sem_raio"
+        android:gravity="center"
         android:orientation="vertical">
 
         <include
@@ -67,13 +69,12 @@
             android:layout_height="50dp"
             app:mcv_selectionColor="#00F"
             app:mcv_showOtherDates="all"
-            app:mcv_tileSize="50dp"/>
-
+            app:mcv_tileSize="50dp" />
 
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerMovimentos"
-            android:layout_width="match_parent"
+            android:layout_width="350dp"
             android:layout_height="match_parent" />
 
     </LinearLayout>

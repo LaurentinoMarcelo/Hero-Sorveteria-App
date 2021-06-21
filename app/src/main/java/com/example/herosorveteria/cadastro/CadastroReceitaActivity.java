@@ -18,7 +18,7 @@ import com.example.herosorveteria.R;
 import com.example.herosorveteria.config.ConfiguracaoFireBase;
 import com.example.herosorveteria.helper.Base64Custom;
 import com.example.herosorveteria.helper.DateCustom;
-import com.example.herosorveteria.model.MovimentacaoReceitas;
+import com.example.herosorveteria.model.Movimentacao;
 import com.example.herosorveteria.model.Usuario;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,7 +35,7 @@ public class CadastroReceitaActivity extends AppCompatActivity {
     TextView campoValor;
     Spinner spinnerCategoria, spinnerFormaPagamento;
     Button btnCalucarTroco, btnRegistrarVenda;
-    private MovimentacaoReceitas movimentacaoReceitas;
+    private Movimentacao movimentacao;
     private DatabaseReference firebaseRef = ConfiguracaoFireBase.getFirebaseDatabase();
     private FirebaseAuth autenticacao = ConfiguracaoFireBase.getFireBaseAutenticacao();
     private Double receitaTotal;
@@ -143,18 +143,18 @@ public class CadastroReceitaActivity extends AppCompatActivity {
         String dataReceita = campoData.getText().toString();
         Double valorRecuperado = Double.parseDouble(valorCompra.getText().toString());
 
-        movimentacaoReceitas = new MovimentacaoReceitas();
-        movimentacaoReceitas.setValor(valorRecuperado);
-        movimentacaoReceitas.setCategoria(categoriaSelecionado);
-        movimentacaoReceitas.setDescricao(campoDescricao.getText().toString());
-        movimentacaoReceitas.setData(campoData.getText().toString());
-        movimentacaoReceitas.setFormaPagamento(formaPagamentoSelecionado);
-        movimentacaoReceitas.setTipo("r");
+        movimentacao = new Movimentacao();
+        movimentacao.setValor(valorRecuperado);
+        movimentacao.setCategoria(categoriaSelecionado);
+        movimentacao.setDescricao(campoDescricao.getText().toString());
+        movimentacao.setData(campoData.getText().toString());
+        movimentacao.setFormaPagamento(formaPagamentoSelecionado);
+        movimentacao.setTipo("r");
 
         receitaGerada = valorRecuperado;
         receitaAtualizada = receitaTotal + receitaGerada;
 
-        movimentacaoReceitas.salvar(dataReceita);
+        movimentacao.salvar(dataReceita);
         atualizarDespesa();
         finish();
     }
@@ -227,9 +227,9 @@ public class CadastroReceitaActivity extends AppCompatActivity {
 
         usuarioRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                Usuario usuario = snapshot.getValue(Usuario.class);
-                receitaTotal = usuario.getReceita();
+            public void onDataChange(@NonNull @NotNull DataSnapshot dataSnapshot) {
+                Usuario usuario = dataSnapshot.getValue(Usuario.class);
+                receitaTotal = usuario.getReceitaTotal();
 
             }
 
@@ -245,7 +245,7 @@ public class CadastroReceitaActivity extends AppCompatActivity {
         String idUsuario = Base64Custom.codificarBase64(emialUsuario);
         DatabaseReference usuarioRef = firebaseRef.child("usuarios").child(idUsuario);
 
-        usuarioRef.child("receita").setValue(receitaAtualizada);
+        usuarioRef.child("receitaTotal").setValue(receitaAtualizada);
     }
 
     public void abrirTelaPrincipal(){

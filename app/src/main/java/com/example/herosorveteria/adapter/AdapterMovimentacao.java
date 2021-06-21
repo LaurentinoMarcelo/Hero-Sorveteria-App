@@ -10,16 +10,16 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.herosorveteria.R;
-import com.example.herosorveteria.model.MovimentacaoReceitas;
+import com.example.herosorveteria.model.Movimentacao;
 
 import java.util.List;
 
 public class AdapterMovimentacao extends RecyclerView.Adapter<AdapterMovimentacao.MyViewHolder> {
 
-    List<MovimentacaoReceitas> movimentacoes;
+    List<Movimentacao> movimentacoes;
     Context context;
 
-    public AdapterMovimentacao(List<MovimentacaoReceitas> movimentacoes, Context context) {
+    public AdapterMovimentacao(List<Movimentacao> movimentacoes, Context context) {
         this.movimentacoes = movimentacoes;
         this.context = context;
     }
@@ -34,17 +34,17 @@ public class AdapterMovimentacao extends RecyclerView.Adapter<AdapterMovimentaca
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
-        MovimentacaoReceitas movimentacaoReceitas = movimentacoes.get(position);
-        double valor = movimentacaoReceitas.getValor();
+        Movimentacao movimentacao = movimentacoes.get(position);
+        double valor = movimentacao.getValor();
         String valorFormatado = String.format("R$ %.2f", valor);
 
-        holder.titulo.setText(movimentacaoReceitas.getDescricao());
+        holder.titulo.setText(movimentacao.getCategoria());
         holder.valor.setText(valorFormatado);
-        holder.formaPagamento.setText(movimentacaoReceitas.getCategoria());
+        holder.formaPagamento.setText(movimentacao.getFormaPagamento());
 
-        if (movimentacaoReceitas.getTipo().equals("d")) {
+        if (movimentacao.getTipo().equals("d")) {
             holder.valor.setTextColor(context.getResources().getColor(R.color.red));
-            double valorDespesa = movimentacaoReceitas.getValor();
+            double valorDespesa = movimentacao.getValor();
             String valorDespesaFormatado = String.format("R$ %.2f", valorDespesa);
 
             holder.valor.setText("-" + valorDespesaFormatado);

@@ -103,8 +103,6 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
                     String idUsuario = Base64Custom.codificarBase64( usuario.getEmail());
                     usuario.setIdUsuario(idUsuario);
                     usuario.salvar();
-                    entrarMenu();
-
                     finish();
 
                 }else {
@@ -129,10 +127,5 @@ public class CadastroUsuarioActivity extends AppCompatActivity {
             }
         });
 
-    }
-    public void entrarMenu(){
-        Intent i = new Intent(this, MenuActivity.class);
-        startActivity(i);
-        finish();
     }
 }

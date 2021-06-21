@@ -4,14 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backgroundtelas"
     tools:context=".cadastro.CadastroProdutoActivity">
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
         android:layout_marginBottom="1dp"
+        android:background="@drawable/campo_texto"
         android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,7 +24,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="300dp"
             android:layout_height="70dp"
-            android:layout_margin="5dp">
+            android:layout_marginTop="15dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textNomeProduto"
@@ -34,7 +36,6 @@
         <LinearLayout
             android:layout_width="300dp"
             android:layout_height="25dp"
-            android:layout_margin="5dp"
             android:orientation="horizontal">
 
             <TextView
@@ -83,9 +84,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/quantiadeProduto"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:gravity="center"
-                    android:hint="0"
                     android:inputType="numberDecimal" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -99,8 +99,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="300dp"
-            android:layout_height="70dp"
-            android:layout_margin="5dp">
+            android:layout_height="70dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textValorCompraProduto"
@@ -112,8 +111,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="300dp"
-            android:layout_height="70dp"
-            android:layout_margin="5dp">
+            android:layout_height="70dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/textValorVendaProduto"
@@ -127,6 +125,9 @@
             android:id="@+id/btnCadastroProduto"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/botao_customizado_login"
             android:onClick="salvarProduto"
             android:text="Cadatrar PRoduto"

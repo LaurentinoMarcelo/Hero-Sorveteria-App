@@ -3,7 +3,6 @@ package com.example.herosorveteria.cadastro;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,13 +11,11 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.herosorveteria.activity.MenuActivity;
 import com.example.herosorveteria.R;
 import com.example.herosorveteria.config.ConfiguracaoFireBase;
 import com.example.herosorveteria.helper.Base64Custom;
 import com.example.herosorveteria.helper.DateCustom;
-import com.example.herosorveteria.model.MovimentacaoDespesas;
-import com.example.herosorveteria.model.MovimentacaoReceitas;
+import com.example.herosorveteria.model.Movimentacao;
 import com.example.herosorveteria.model.Usuario;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
@@ -38,12 +35,11 @@ public class CadastroDespesasActivity extends AppCompatActivity {
     private String categoriaDespesaSelecionada;
     private String[] formaPagamento = {"Dinheiro", "Cartão"};
     private String formaPagamentoSelecionado;
-    private MovimentacaoDespesas movimentacaoDespesas;
+    private Movimentacao movimentacaoDespesas;
     private DatabaseReference firebaseRef = ConfiguracaoFireBase.getFirebaseDatabase();
     private FirebaseAuth autenticacao = ConfiguracaoFireBase.getFireBaseAutenticacao();
     private Double despesaTotal;
-    private Double despesaGerada;
-    private Double despesaAtualizada;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,25 +119,26 @@ public class CadastroDespesasActivity extends AppCompatActivity {
     }
 
     public void salvarDespesas(View v){
-        validarCamposDespesas();
-        String dataDespesa = campoData.getText().toString();
-        Double valorRecuperado = Double.parseDouble(campoValor.getText().toString());
+        if(validarCamposDespesas()) {
 
-        movimentacaoDespesas = new MovimentacaoDespesas();
-        movimentacaoDespesas.setValor(valorRecuperado);
-        movimentacaoDespesas.setCategoria(categoriaDespesaSelecionada);
-        movimentacaoDespesas.setDescricao(campoDescricao.getText().toString());
-        movimentacaoDespesas.setFormaPagamento(formaPagamentoSelecionado);
-        movimentacaoDespesas.setData(campoData.getText().toString());
-        movimentacaoDespesas.setTipo("d");
+            movimentacaoDespesas = new Movimentacao();
+            String dataDespesa = campoData.getText().toString();
+            Double valorRecuperado = Double.parseDouble(campoValor.getText().toString());
 
-        despesaGerada = valorRecuperado;
-        despesaAtualizada = despesaTotal + despesaGerada;
+            movimentacaoDespesas.setValor(valorRecuperado);
+            movimentacaoDespesas.setCategoria(categoriaDespesaSelecionada);
+            movimentacaoDespesas.setDescricao(campoDescricao.getText().toString());
+            movimentacaoDespesas.setFormaPagamento(formaPagamentoSelecionado);
+            movimentacaoDespesas.setData(campoData.getText().toString());
+            movimentacaoDespesas.setTipo("d");
 
-        movimentacaoDespesas.salvar(dataDespesa);
-        atualizarDespesa();
-        finish();
+            Double despesaAtualizada = despesaTotal + valorRecuperado;
+            atualizarDespesa(despesaAtualizada);
 
+            movimentacaoDespesas.salvar(dataDespesa);
+
+            finish();
+        }
 
     }
 
@@ -198,9 +195,9 @@ public class CadastroDespesasActivity extends AppCompatActivity {
 
         usuarioRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                Usuario usuario = snapshot.getValue(Usuario.class);
-                despesaTotal = usuario.getDespesas();
+            public void onDataChange(@NonNull @NotNull DataSnapshot dataSnapshot) {
+                Usuario usuario = dataSnapshot.getValue(Usuario.class);
+                despesaTotal = usuario.getDespesaTotal();
 
             }
 
@@ -211,20 +208,15 @@ public class CadastroDespesasActivity extends AppCompatActivity {
         });
     }
 
-    public void atualizarDespesa(){
+    public void atualizarDespesa(Double despesaAtualizada){
         String emialUsuario = autenticacao.getCurrentUser().getEmail();
         String idUsuario = Base64Custom.codificarBase64(emialUsuario);
         DatabaseReference usuarioRef = firebaseRef.child("usuarios").child(idUsuario);
 
-        usuarioRef.child("despesas").setValue(despesaAtualizada);
+        usuarioRef.child("despesaTotal").setValue(despesaAtualizada);
     }
 
-    public void abrirTelaPrincipal(){
-        Intent i = new Intent(this, MenuActivity.class);
-        startActivity(i);
-        finish();
 
-    }
 
 
 }

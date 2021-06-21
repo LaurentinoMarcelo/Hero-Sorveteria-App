@@ -39,19 +39,12 @@ public class CadastroFornecedorActivity extends AppCompatActivity {
         validarCampos();
         if(validarCampos()==true){
             fornecedor.salvar();
-            voltarListaFornecedor();
+            finish();
         }
 
 
     }
 
-    private void voltarListaFornecedor() {
-
-        Intent i = new Intent(this, ListaFornecedorActivity.class);
-        startActivity(i);
-        finish();
-
-    }
 
     private void incializarComponentes() {
         nomeFornecedor = findViewById(R.id.nomeFornecedorCadastro);

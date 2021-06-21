@@ -6,19 +6,17 @@ import com.example.herosorveteria.helper.DateCustom;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 
-public class MovimentacaoDespesas {
+public class Movimentacao {
 
     private String data;
     private String categoria;
     private String descricao;
     private String formaPagamento;
     private String tipo;
-    private Double valor;
+    private double valor;
     private String key;
 
-
-    public MovimentacaoDespesas() {
-
+    public Movimentacao() {
 
     }
 
@@ -26,7 +24,7 @@ public class MovimentacaoDespesas {
 
         FirebaseAuth autenticacao = ConfiguracaoFireBase.getFireBaseAutenticacao();
         String idUsuario = Base64Custom.codificarBase64(autenticacao.getCurrentUser().getEmail());
-        String mesAno = DateCustom.mesAnoDataEscolhida(data);
+        String mesAno = DateCustom.mesAnoDataEscolhida(dataEscolhida);
 
         DatabaseReference fireBase = ConfiguracaoFireBase.getFirebaseDatabase();
         fireBase.child("movimentacao")
@@ -35,6 +33,22 @@ public class MovimentacaoDespesas {
                 .push()
                 .setValue(this);
 
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public String getFormaPagamento() {
+        return formaPagamento;
+    }
+
+    public void setFormaPagamento(String formaPagamento) {
+        this.formaPagamento = formaPagamento;
     }
 
     public String getData() {
@@ -61,14 +75,6 @@ public class MovimentacaoDespesas {
         this.descricao = descricao;
     }
 
-    public String getFormaPagamento() {
-        return formaPagamento;
-    }
-
-    public void setFormaPagamento(String formaPagamento) {
-        this.formaPagamento = formaPagamento;
-    }
-
     public String getTipo() {
         return tipo;
     }
@@ -85,11 +91,5 @@ public class MovimentacaoDespesas {
         this.valor = valor;
     }
 
-    public String getKey() {
-        return key;
-    }
 
-    public void setKey(String key) {
-        this.key = key;
-    }
 }
