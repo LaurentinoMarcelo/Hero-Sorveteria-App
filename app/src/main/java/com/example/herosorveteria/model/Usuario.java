@@ -30,6 +30,7 @@ public class Usuario {
                 .setValue(this);
     }
 
+
     @Exclude
     public String getIdUsuario() {
         return idUsuario;
