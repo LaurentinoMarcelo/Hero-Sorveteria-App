@@ -97,4 +97,12 @@ As seguintes dependência do firebase foram usadas na construção do projeto:
 - [Google Analytics](https://firebase.google.com/docs/analytics/get-started?platform=android)
 - [Cloud Storage](https://firebase.google.com/docs/storage/android/start)
 
+---
+
+## 📝 Licença
+
+Este projeto esta sobe a licença [MIT](./LICENSE).
+
+Feito por Marcelo Laurentino👋🏽 [Entre em contato!](https://www.linkedin.com/in/marcelo-laurentino-8a54ba114/)
+
 
