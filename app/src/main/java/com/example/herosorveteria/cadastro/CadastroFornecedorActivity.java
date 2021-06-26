@@ -27,22 +27,22 @@ public class CadastroFornecedorActivity extends AppCompatActivity {
 
     }
     public void salvarFornecedor(View v){
-
-        validarCampos();
+        if(validarCampos()==true){
         Fornecedor fornecedor = new Fornecedor();
         fornecedor.setNome(nomeFornecedor.getText().toString());
         fornecedor.setTelefone(telefoneFornecedor.getText().toString());
         fornecedor.setEndereço(enderecoFornecedor.getText().toString());
         fornecedor.setProdutoFornecido(produtoFornecedor.getText().toString());
+
         fornecedor.salvar();
-
-        validarCampos();
-        if(validarCampos()==true){
-            fornecedor.salvar();
-            finish();
+        retornarParaLista();
         }
+    }
 
-
+    public void retornarParaLista(){
+        Intent i = new Intent(this, ListaFornecedorActivity.class);
+        startActivity(i);
+        finish();
     }
 
 

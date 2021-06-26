@@ -15,15 +15,12 @@ public class Clientes {
     public void salvar(){
         FirebaseAuth autenticacao = ConfiguracaoFireBase.getFireBaseAutenticacao();
         String idUsuario = Base64Custom.codificarBase64(autenticacao.getCurrentUser().getEmail());
+
         DatabaseReference fireBase = ConfiguracaoFireBase.getFirebaseDatabase();
         fireBase.child("clientes")
                 .child(idUsuario)
                 .push()
                 .setValue(this);
-    }
-
-    public Clientes() {
-
     }
 
     public String getRedeSocial() {

@@ -2,12 +2,15 @@ package com.example.herosorveteria.cadastro;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
 import com.example.herosorveteria.R;
 import com.example.herosorveteria.config.ConfiguracaoFireBase;
+import com.example.herosorveteria.menu.ListaClientesActivity;
+import com.example.herosorveteria.menu.ListaFornecedorActivity;
 import com.example.herosorveteria.model.Clientes;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,9 +40,15 @@ public class CadastroClienteActivity extends AppCompatActivity {
             cliente.setTelefone(campoTelefone.getText().toString());
             cliente.setRedeSocial(campoRedeSocial.getText().toString());
             cliente.salvar();
-            finish();
+            retornarParaLista();
         }
 
+    }
+
+    public void retornarParaLista(){
+        Intent i = new Intent(this, ListaClientesActivity.class);
+        startActivity(i);
+        finish();
     }
 
     private boolean validarCamposClientes() {

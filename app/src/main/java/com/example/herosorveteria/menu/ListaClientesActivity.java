@@ -23,7 +23,10 @@ import com.example.herosorveteria.helper.Base64Custom;
 import com.example.herosorveteria.model.Clientes;
 import com.example.herosorveteria.model.Produto;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -31,13 +34,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListaClientesActivity extends AppCompatActivity {
-    private RecyclerView recyclerViewCliente;
+    private DatabaseReference firebaseRef = ConfiguracaoFireBase.getFirebaseDatabase();
+    RecyclerView recyclerViewCliente;
+    private ValueEventListener valueEventListener;
+    private FirebaseAuth autenticacao = ConfiguracaoFireBase.getFireBaseAutenticacao();
+    private DatabaseReference clienteRef;
     private AdapterClientes adapterClientes;
     private List<Clientes> clientList = new ArrayList<>();
     private Clientes cliente;
-    private DatabaseReference firebaseRef = ConfiguracaoFireBase.getFirebaseDatabase();
-    private FirebaseAuth autenticacao = ConfiguracaoFireBase.getFireBaseAutenticacao();
-    private DatabaseReference clienteRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +60,7 @@ public class ListaClientesActivity extends AppCompatActivity {
     }
 
     private void swipe() {
+
         ItemTouchHelper.Callback itemTouch = new ItemTouchHelper.Callback() {
             @Override
             public int getMovementFlags(@NonNull @NotNull RecyclerView recyclerView, @NonNull @NotNull RecyclerView.ViewHolder viewHolder) {
@@ -91,8 +96,11 @@ public class ListaClientesActivity extends AppCompatActivity {
 
                 String emialUsuario = autenticacao.getCurrentUser().getEmail();
                 String idUsuario = Base64Custom.codificarBase64(emialUsuario);
-                clienteRef = firebaseRef.child("cliestes")
+                clienteRef = firebaseRef.child("clientes")
                         .child(idUsuario);
+
+                clienteRef.child(cliente.getKey()).removeValue();
+                adapterClientes.notifyItemRemoved(position);
             }
         });
 
@@ -108,6 +116,31 @@ public class ListaClientesActivity extends AppCompatActivity {
         alert.show();
     }
 
+    private void recuperarClientes() {
+        String emialUsuario = autenticacao.getCurrentUser().getEmail();
+        String idUsuario = Base64Custom.codificarBase64(emialUsuario);
+        clienteRef = firebaseRef.child("clientes")
+                .child(idUsuario);
+
+        valueEventListener = clienteRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                clientList.clear();
+
+                for(DataSnapshot dados: snapshot.getChildren()){
+                    Clientes clientes = dados.getValue(Clientes.class);
+                    clientes.setKey(dados.getKey());
+                    clientList.add(clientes);
+                }
+                adapterClientes.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull @NotNull DatabaseError error) {
+
+            }
+        });
+    }
     private void inicializarComponentes() {
         recyclerViewCliente = findViewById(R.id.recyclerListClientes);
     }
@@ -119,4 +152,12 @@ public class ListaClientesActivity extends AppCompatActivity {
         finish();
 
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        recuperarClientes();
+    }
+
+
 }

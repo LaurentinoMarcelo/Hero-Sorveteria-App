@@ -26,7 +26,7 @@ public class AdapterFornecedores extends RecyclerView.Adapter<AdapterFornecedore
     }
 
     public FornecedorViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
-       View itemLista = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_movimentacao_fornecedor, parent,false);
+        View itemLista = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_movimentacao_fornecedor, parent,false);
         return new FornecedorViewHolder(itemLista);
     }
 

@@ -33,17 +33,18 @@ public class AdapterClientes extends RecyclerView.Adapter<AdapterClientes.Client
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull ClienteViewHolder holder, int position) {
-        Clientes clientes = clientesList.get(position);
+        Clientes cliente = clientesList.get(position);
 
-        holder.nome.setText(clientes.getNome());
-        holder.telefone.setText(clientes.getTelefone());
-        holder.redesocial.setText(clientes.getRedeSocial());
+        holder.nome.setText(cliente.getNome());
+        holder.telefone.setText(cliente.getTelefone());
+        holder.redesocial.setText(cliente.getRedeSocial());
     }
 
 
     @Override
     public int getItemCount() {
-        return clientesList.size();
+
+       return clientesList.size();
     }
 
     public class ClienteViewHolder extends RecyclerView.ViewHolder{
