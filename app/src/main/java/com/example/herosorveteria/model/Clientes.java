@@ -22,11 +22,8 @@ public class Clientes {
                 .setValue(this);
     }
 
-    public Clientes(String nome, String telefone, String redeSocial, String key) {
-        this.nome = nome;
-        this.telefone = telefone;
-        this.redeSocial = redeSocial;
-        Key = key;
+    public Clientes() {
+
     }
 
     public String getRedeSocial() {

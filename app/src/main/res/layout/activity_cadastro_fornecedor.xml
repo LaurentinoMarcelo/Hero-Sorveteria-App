@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backgroundtelas"
     android:gravity="center"
     android:orientation="vertical"
     tools:context=".cadastro.CadastroFornecedorActivity">
@@ -11,13 +12,19 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/campo_texto"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="10dp"
+            android:layout_marginTop="15dp"
             android:hint="Nome">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -29,7 +36,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp">
+            android:layout_margin="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/telefoneFornecedorCadastro"
@@ -42,7 +49,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp">
+            android:layout_margin="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/enderecoFornecedorCadastro"
@@ -54,7 +61,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp">
+            android:layout_margin="10dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/produtosFornecedorCadastro"
@@ -67,7 +74,9 @@
             android:id="@+id/button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="20dp"
             android:background="@drawable/botao_customizado_login"
             android:onClick="salvarFornecedor"
             android:text="Salvar"

@@ -1,13 +1,17 @@
 package com.example.herosorveteria.menu;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.herosorveteria.R;
 import com.example.herosorveteria.adapter.AdapterProduto;
@@ -32,9 +36,10 @@ public class ListaProdutoActivity extends AppCompatActivity {
     RecyclerView recyclerViewProdutos;
     private ValueEventListener valueEventListener;
     private FirebaseAuth autenticacao = ConfiguracaoFireBase.getFireBaseAutenticacao();
-    private DatabaseReference produtoRef = ConfiguracaoFireBase.getFirebaseDatabase();
+    private DatabaseReference produtoRef;
     private AdapterProduto adapterProduto;
     private List<Produto> produtoList = new ArrayList<>();
+    private Produto produto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +47,7 @@ public class ListaProdutoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lista_produto);
 
         inicializarComponentes();
+        swipe();
 
         adapterProduto = new AdapterProduto(produtoList,this);
 
@@ -50,6 +56,64 @@ public class ListaProdutoActivity extends AppCompatActivity {
         recyclerViewProdutos.setHasFixedSize(true);
         recyclerViewProdutos.setAdapter(adapterProduto);
 
+    }
+
+    public void swipe(){
+
+        ItemTouchHelper.Callback itemTouch = new ItemTouchHelper.Callback() {
+            @Override
+            public int getMovementFlags(@NonNull @NotNull RecyclerView recyclerView, @NonNull @NotNull RecyclerView.ViewHolder viewHolder) {
+                int dragsFlags = ItemTouchHelper.ACTION_STATE_IDLE;
+                int swiperFlags = ItemTouchHelper.START|ItemTouchHelper.END;
+                return makeMovementFlags(dragsFlags, swiperFlags);
+            }
+
+            @Override
+            public boolean onMove(@NonNull @NotNull RecyclerView recyclerView, @NonNull @NotNull RecyclerView.ViewHolder viewHolder, @NonNull @NotNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+            @Override
+            public void onSwiped(@NonNull @NotNull RecyclerView.ViewHolder viewHolder, int direction) {
+                excluirProduto(viewHolder);
+            }
+        };
+        new ItemTouchHelper(itemTouch).attachToRecyclerView(recyclerViewProdutos);
+    }
+
+    private void excluirProduto(RecyclerView.ViewHolder viewHolder) {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setTitle("Excluir, Produto da Lista");
+        alertDialog.setMessage("Você tem certeza que deseja excluir esse produto?");
+        alertDialog.setCancelable(false);
+
+        alertDialog.setPositiveButton("Confirmar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                int position = viewHolder.getAdapterPosition();
+                produto = produtoList.get(position);
+
+                String emialUsuario = autenticacao.getCurrentUser().getEmail();
+                String idUsuario = Base64Custom.codificarBase64(emialUsuario);
+                produtoRef = firebaseRef.child("produtos")
+                            .child(idUsuario);
+
+
+                produtoRef.child(produto.getKey()).removeValue();
+                adapterProduto.notifyItemRemoved(position);
+            }
+        });
+
+        alertDialog.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Toast.makeText(ListaProdutoActivity.this, "Cancelado",
+                        Toast.LENGTH_SHORT).show();
+                adapterProduto.notifyDataSetChanged();
+            }
+        });
+        AlertDialog alert = alertDialog.create();
+        alert.show();
     }
 
     public void recuperarProdutos(){
