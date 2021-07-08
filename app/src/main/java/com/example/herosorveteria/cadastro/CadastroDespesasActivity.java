@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -28,7 +29,8 @@ import org.jetbrains.annotations.NotNull;
 
 public class CadastroDespesasActivity extends AppCompatActivity {
 
-    TextInputEditText campoData, campoValor, campoDescricao;
+    EditText campoValor;
+    TextInputEditText campoData, campoDescricao;
     Spinner spinnerFormaPagamento, spinnerCategoriaDespesa;
     Button btnRegistrar;
     private String[] categoriaDespesa = {"Fornecedores", "Despesas Fixas", "Despesas Variáveis"};

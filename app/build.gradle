@@ -58,5 +58,11 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.3'
 
     implementation 'com.github.prolificinteractive:material-calendarview:1.4.3'
+
+    //Denpendencia mascara de moeda
+    implementation 'com.github.BlacKCaT27:CurrencyEditText:2.0.2'
+
+    //Denpendencia mascara de telefone
+    implementation 'com.github.santalu:maskara:1.0.0'
 }
     apply plugin: 'com.google.gms.google-services'

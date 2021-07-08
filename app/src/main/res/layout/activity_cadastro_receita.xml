@@ -59,6 +59,7 @@
                     android:textColorHighlight="#A80CCB"
                     android:textColorHint="#A80CCB"
                     android:textColorLink="#A80CCB" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
 

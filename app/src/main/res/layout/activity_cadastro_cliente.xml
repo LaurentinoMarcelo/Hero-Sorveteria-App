@@ -42,22 +42,16 @@
                 android:textColorLink="#A80CCB" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
+        <com.santalu.maskara.widget.MaskEditText
+            android:id="@+id/cadastroTelefoneCliente"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/cadastroTelefoneCliente"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:hint="Telefone"
-                android:inputType="numberDecimal"
-                android:textColor="#A80CCB"
-                android:textColorHighlight="#A80CCB"
-                android:textColorHint="#A80CCB"
-                android:textColorLink="#A80CCB" />
-        </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="match_parent"
+            android:layout_margin="5dp"
+            android:hint="telefone"
+            android:inputType="numberDecimal"
+            app:mask="+55 (__) _____ ____"
+            app:maskCharacter="_"
+            app:maskStyle="completable" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"

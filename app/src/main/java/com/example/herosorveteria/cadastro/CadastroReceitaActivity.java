@@ -9,10 +9,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blackcat.currencyedittext.CurrencyEditText;
 import com.example.herosorveteria.activity.MenuActivity;
 import com.example.herosorveteria.R;
 import com.example.herosorveteria.config.ConfiguracaoFireBase;
@@ -30,11 +32,11 @@ import com.google.firebase.database.ValueEventListener;
 import org.jetbrains.annotations.NotNull;
 
 public class CadastroReceitaActivity extends AppCompatActivity {
-
-    TextInputEditText campoData, campoDescricao, valorPago, valorCompra;
-    TextView campoValor;
-    Spinner spinnerCategoria, spinnerFormaPagamento;
-    Button btnCalucarTroco, btnRegistrarVenda;
+    private EditText valorPago, valorCompra;
+    private TextInputEditText campoData, campoDescricao;
+    private TextView campoValor;
+    private Spinner spinnerCategoria, spinnerFormaPagamento;
+    private Button btnCalucarTroco, btnRegistrarVenda;
     private Movimentacao movimentacao;
     private DatabaseReference firebaseRef = ConfiguracaoFireBase.getFirebaseDatabase();
     private FirebaseAuth autenticacao = ConfiguracaoFireBase.getFireBaseAutenticacao();
