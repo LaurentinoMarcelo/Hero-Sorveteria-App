@@ -8,16 +8,12 @@
     tools:context=".cadastro.CadastroReceitaActivity">
 
     <LinearLayout
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_margin="1dp"
-        android:background="@drawable/campo_texto"
+        android:background="@drawable/novo_fundo"
         android:gravity="center"
-        android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -25,72 +21,69 @@
             android:gravity="center"
             android:orientation="vertical">
 
-
             <com.google.android.material.textfield.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_margin="5dp">
+                android:layout_width="300dp"
+                android:layout_height="50dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editData"
+                    android:background="@drawable/novo_botao"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="5dp"
                     android:gravity="center"
                     android:inputType="date"
-                    android:textColorHint="#000000"
+                    android:textColorHint="@color/black"
                     android:textSize="18sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="300dp"
-                android:layout_height="70dp"
-                android:layout_margin="5dp">
+                android:layout_height="60dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editValorCompra"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="5dp"
+                    android:background="@drawable/novo_botao"
                     android:hint="Valor da compra"
                     android:inputType="numberDecimal"
-                    android:textColor="#A80CCB"
-                    android:textColorHighlight="#A80CCB"
-                    android:textColorHint="#A80CCB"
-                    android:textColorLink="#A80CCB" />
+                    android:textColor="#000000"
+                    android:textColorHighlight="#000000"
+                    android:textColorHint="#000000"
+                    android:textColorLink="#000000" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="300dp"
-                android:layout_height="70dp"
-                android:layout_margin="5dp">
+                android:layout_height="60dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editvalorPago"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="5dp"
+                    android:background="@drawable/novo_botao"
                     android:hint="Valor pago"
                     android:inputType="numberDecimal"
-                    android:textColor="#A80CCB"
-                    android:textColorHighlight="#A80CCB"
-                    android:textColorHint="#A80CCB"
-                    android:textColorLink="#A80CCB" />
+                    android:textColor="#000000"
+                    android:textColorHighlight="#000000"
+                    android:textColorHint="#000000"
+                    android:textColorLink="#000000" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:id="@+id/editValor"
+                android:background="@drawable/novo_botao"
                 android:layout_width="300dp"
                 android:layout_height="50dp"
-                android:layout_margin="5dp"
+                android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:hint="R$ 00,00"
                 android:inputType="numberDecimal"
                 android:textColor="#000000"
-                android:textColorHint="@color/mr_cast_meta_black_scrim"
+                android:textColorHint="@color/black"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -100,13 +93,13 @@
         <LinearLayout
             android:layout_width="300dp"
             android:layout_height="50dp"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <Spinner
                 android:id="@+id/spinnerCategoria"
                 android:layout_width="match_parent"
+                android:background="@drawable/novo_campo_texto"
                 android:layout_height="50dp"
                 android:layout_weight="1" />
 
@@ -115,23 +108,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_weight="1"
-                android:textColor="#A80CCB"
-                android:textColorHighlight="#A80CCB"
-                android:textColorHint="#A80CCB"
-                android:textColorLink="#A80CCB" />
+                android:background="@drawable/novo_campo_texto"
+                android:textColor="#000000"
+                android:textColorHighlight="#000000"
+                android:textColorHint="#000000"
+                android:textColorLink="#000000" />
         </LinearLayout>
 
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="300dp"
-            android:layout_height="70dp"
-            android:layout_margin="5dp">
+            android:layout_height="60dp">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editDescricao"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="5dp"
+                android:background="@drawable/novo_campo_texto"
                 android:hint="Descrição"
                 android:inputType="text"
                 android:textColorHint="@color/Roxo" />
@@ -149,10 +142,10 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/botao_customizado_login"
+                android:background="@drawable/novo_botao"
                 android:onClick="calcularTroco"
                 android:text="Calcular"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
             <Button
@@ -161,10 +154,10 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 android:layout_weight="1"
-                android:background="@drawable/botao_customizado_login"
+                android:background="@drawable/novo_botao"
                 android:onClick="salvarReceitas"
                 android:text="Registrar"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textStyle="bold" />
 
         </LinearLayout>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/planofundologin"
+    android:background="@drawable/novo_fundo"
     android:gravity="center"
     tools:context=".cadastro.CadastroUsuarioActivity">
 
@@ -34,9 +34,8 @@
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_marginBottom="15dp"
-            android:background="@drawable/campo_texto"
+            android:background="@drawable/novo_campo_texto"
             android:ems="10"
-            android:gravity="center"
             android:hint="Nome"
             android:inputType="textEmailAddress" />
 
@@ -45,9 +44,8 @@
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_marginBottom="15dp"
-            android:background="@drawable/campo_texto"
+            android:background="@drawable/novo_campo_texto"
             android:ems="10"
-            android:gravity="center"
             android:hint="E-mail"
             android:inputType="textEmailAddress" />
 
@@ -56,21 +54,20 @@
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_marginBottom="15dp"
-            android:background="@drawable/campo_texto"
+            android:background="@drawable/novo_campo_texto"
             android:ems="10"
-            android:gravity="center"
             android:hint="Senha"
             android:inputType="numberPassword" />
 
 
         <Button
             android:id="@+id/btnCadastro"
-            android:layout_width="300dp"
+            android:layout_width="140dp"
             android:layout_height="50dp"
-            android:background="@drawable/botao_customizado_login"
+            android:background="@drawable/novo_botao"
             android:onClick="btnCadastro"
             android:text="Cadastrar"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="16sp"
             android:textStyle="bold" />
 

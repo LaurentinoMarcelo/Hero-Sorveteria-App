@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/planofundologin"
+    android:background="@drawable/novo_fundo"
     android:hapticFeedbackEnabled="true"
-    tools:context=".activity.LoginActivity" >
+    tools:context=".activity.LoginActivity">
 
     <LinearLayout
         android:layout_width="409dp"
@@ -25,20 +25,20 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView8"
-            android:layout_width="match_parent"
-            android:layout_height="426dp"
-            app:srcCompat="@drawable/logoherofundotransparente" />
+            android:id="@+id/imageView4"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            app:srcCompat="@drawable/novo_logo" />
 
         <EditText
             android:id="@+id/emailLogin"
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_marginBottom="15dp"
-            android:background="@drawable/campo_texto"
+            android:background="@drawable/novo_campo_texto"
+            android:elevation="10dp"
             android:ems="10"
-            android:gravity="center"
-            android:hint="E-mail"
+            android:hint="   E-mail"
             android:inputType="textEmailAddress"
             android:textColor="#040404"
             android:textColorHint="#000000" />
@@ -48,34 +48,42 @@
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_marginBottom="15dp"
-            android:background="@drawable/campo_texto"
+            android:background="@drawable/novo_campo_texto"
+            android:elevation="10dp"
             android:ems="10"
-            android:gravity="center"
-            android:hint="Senha"
+            android:hint="   Senha"
             android:inputType="numberPassword"
             android:textColor="#000000"
             android:textColorHint="#000000" />
+        <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+                    <Button
+                        android:id="@+id/botaoLogin"
+                        android:layout_width="140dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/novo_botao"
+                        android:text="ENTRAR"
+                        android:textColor="#000000"
+                        android:textStyle="bold"
+                        android:elevation="10dp"
+                        android:layout_marginRight="20dp"/>
 
-        <Button
-            android:id="@+id/botaoLogin"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/botao_customizado_login"
-            android:text="Entrar"
-            android:textColor="#FFFFFF"
-            android:textStyle="bold" />
+                    <Button
+                        android:id="@+id/criarConta"
+                        android:layout_width="140dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/novo_botao"
+                        android:onClick="btnCadastrar"
+                        android:text="CADASTRAR"
+                        android:textAllCaps="false"
+                        android:textColor="@color/black"
+                        android:textSize="12sp"
+                        android:elevation="10dp"
+                        android:textStyle="bold" />
+        </LinearLayout>
 
-        <Button
-            android:id="@+id/criarConta"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="#00000000"
-            android:onClick="btnCadastrar"
-            android:text="Criar uma nova conta."
-            android:textAllCaps="false"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-            android:textStyle="bold" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

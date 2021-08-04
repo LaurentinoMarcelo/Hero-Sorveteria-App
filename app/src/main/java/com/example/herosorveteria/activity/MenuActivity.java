@@ -50,7 +50,7 @@ import java.util.List;
 public class MenuActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private MaterialCalendarView calendarView;
-    private TextView textoSaudacao, textoSaldo;
+    private TextView textoSaudacao, textoSaldo, nameHeader;
     private Double despesaTotal = 0.0;
     private Double receitaTotal = 0.0;
     private Double resumoUsuario;
@@ -77,13 +77,12 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu);
+        setContentView(R.layout.menu_activity_menu);
 
         inicializarComponetes();
         recuperarResumo();
         configuraCalendarView();
         swipe();
-
 
 
         adapterMovimentacao = new AdapterMovimentacao(movimentacoes, this);
@@ -259,6 +258,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
         textoSaldo = findViewById(R.id.textSaldo);
         textoSaudacao = findViewById(R.id.textSaudacao);
+        nameHeader = findViewById(R.id.nameHeader);
 
         recyclerView = findViewById(R.id.recyclerMovimentos);
     }

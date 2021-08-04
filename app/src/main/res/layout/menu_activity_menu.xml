@@ -12,9 +12,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/campo_texto_sem_raio"
-        android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
 
         <include
             android:id="@+id/toolbar"
@@ -23,8 +22,11 @@
         </include>
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/novo_botao"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -63,28 +65,38 @@
 
         </LinearLayout>
 
-        <com.prolificinteractive.materialcalendarview.MaterialCalendarView
-            android:id="@+id/calendarView"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            app:mcv_selectionColor="#00F"
-            app:mcv_showOtherDates="all"
-            app:mcv_tileSize="50dp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/novo_botao"
+            android:orientation="vertical">
+
+            <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+                android:id="@+id/calendarView"
+                android:layout_width="350dp"
+                android:layout_height="50dp"
+                app:mcv_selectionColor="#00F"
+                app:mcv_showOtherDates="all"
+                app:mcv_tileSize="50dp" />
 
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerMovimentos"
-            android:layout_width="350dp"
-            android:layout_height="match_parent" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerMovimentos"
+                android:layout_width="350dp"
+                android:layout_height="200dp" />
 
-    </LinearLayout>
 
+        </LinearLayout>
+
+     </LinearLayout>
 
     <!-- --><com.google.android.material.navigation.NavigationView
-        android:id="@+id/nav_menu"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        app:headerLayout="@layout/header"
-        app:menu="@menu/my_menu" />
+    android:id="@+id/nav_menu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    app:headerLayout="@layout/header"
+    app:menu="@menu/my_menu" />
+
 </androidx.drawerlayout.widget.DrawerLayout>
+

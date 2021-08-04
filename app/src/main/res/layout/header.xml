@@ -2,9 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
-    android:background="@drawable/header"
-    android:gravity="bottom"
+    android:layout_height="175dp"
+    android:background="@drawable/novo_fundo_cabecalho"
     android:orientation="vertical"
     android:padding="20dp">
 
@@ -12,20 +11,19 @@
         android:id="@+id/imageView2"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        app:srcCompat="@drawable/logoherofundotransparente" />
+        app:srcCompat="@drawable/novo_imagem_perfil" />
 
     <TextView
         android:id="@+id/nameHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#FFFFFF"
-        android:textSize="20dp" />
+        android:layout_marginTop="10dp"
 
-    <TextView
-        android:id="@+id/cargoHeader"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:hint="Nome"
         android:textColor="#FFFFFF"
-        android:textSize="20dp" />
+        android:textColorHint="@color/white"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
 
 </LinearLayout>

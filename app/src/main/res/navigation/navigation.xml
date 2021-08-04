@@ -15,7 +15,7 @@
         android:id="@+id/menuActivity"
         android:name="com.example.herosorveteria.activity.MenuActivity"
         android:label="activity_menu"
-        tools:layout="@layout/activity_menu" />
+        tools:layout="@layout/menu_activity_menu" />
     <activity
         android:id="@+id/historicoDeVendas"
         android:name="com.example.herosorveteria.menu.HistoricoDeVendasActivity"
